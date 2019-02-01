@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F847A22E1DD7234A321DCEF /* Pods_DineMe_Waiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */; };
 		7F66861D2204CA3F00639C91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66861C2204CA3F00639C91 /* AppDelegate.swift */; };
-		7F66861F2204CA3F00639C91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66861E2204CA3F00639C91 /* ViewController.swift */; };
+		7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66861E2204CA3F00639C91 /* LoginViewController.swift */; };
 		7F6686222204CA3F00639C91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F6686202204CA3F00639C91 /* Main.storyboard */; };
 		7F6686242204CA4200639C91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6686232204CA4200639C91 /* Assets.xcassets */; };
 		7F6686272204CA4200639C91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F6686252204CA4200639C91 /* LaunchScreen.storyboard */; };
@@ -39,7 +39,7 @@
 		2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DineMe_Waiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6686192204CA3F00639C91 /* DineMe-Waiter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DineMe-Waiter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F66861C2204CA3F00639C91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7F66861E2204CA3F00639C91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7F66861E2204CA3F00639C91 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7F6686212204CA3F00639C91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7F6686232204CA4200639C91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F6686262204CA4200639C91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,6 +98,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4EE58FA22204D33300918778 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7F66861E2204CA3F00639C91 /* LoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4EE58FA32204D33B00918778 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4EE58FA42204D33E00918778 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7F6686102204CA3F00639C91 = {
 			isa = PBXGroup;
 			children = (
@@ -123,8 +145,10 @@
 		7F66861B2204CA3F00639C91 /* DineMe-Waiter */ = {
 			isa = PBXGroup;
 			children = (
+				4EE58FA42204D33E00918778 /* Model */,
+				4EE58FA32204D33B00918778 /* View */,
+				4EE58FA22204D33300918778 /* Controllers */,
 				7F66861C2204CA3F00639C91 /* AppDelegate.swift */,
-				7F66861E2204CA3F00639C91 /* ViewController.swift */,
 				7F6686202204CA3F00639C91 /* Main.storyboard */,
 				7F6686232204CA4200639C91 /* Assets.xcassets */,
 				7F6686252204CA4200639C91 /* LaunchScreen.storyboard */,
@@ -164,7 +188,6 @@
 				7F6686162204CA3F00639C91 /* Frameworks */,
 				7F6686172204CA3F00639C91 /* Resources */,
 				63D3F175121F5650528BD1C8 /* [CP] Embed Pods Frameworks */,
-				47A937CAD32652FDE855754C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,24 +306,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		47A937CAD32652FDE855754C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		63D3F175121F5650528BD1C8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,7 +313,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -319,7 +324,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -358,7 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F66861F2204CA3F00639C91 /* ViewController.swift in Sources */,
+				7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */,
 				7F66861D2204CA3F00639C91 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
