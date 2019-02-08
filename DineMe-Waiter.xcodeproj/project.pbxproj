@@ -16,6 +16,8 @@
 		7F6686322204CA4200639C91 /* DineMe_WaiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6686312204CA4200639C91 /* DineMe_WaiterTests.swift */; };
 		7F66863D2204CA4200639C91 /* DineMe_WaiterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66863C2204CA4200639C91 /* DineMe_WaiterUITests.swift */; };
 		7F66864B2204CE1B00639C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F66864A2204CE1B00639C91 /* GoogleService-Info.plist */; };
+		7FE6E25A220D1DF50052CD8B /* OngoingTablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */; };
+		7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		7F66863C2204CA4200639C91 /* DineMe_WaiterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DineMe_WaiterUITests.swift; sourceTree = "<group>"; };
 		7F66863E2204CA4200639C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F66864A2204CE1B00639C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTablesViewController.swift; sourceTree = "<group>"; };
+		7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTableViewCell.swift; sourceTree = "<group>"; };
 		91376F2291D53B87658A9F5A /* Pods-DineMe-Waiter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DineMe-Waiter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter.debug.xcconfig"; sourceTree = "<group>"; };
 		B58904EF70F8BB0AFC069706 /* Pods-DineMe-Waiter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DineMe-Waiter.release.xcconfig"; path = "Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,22 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				7F66861E2204CA3F00639C91 /* LoginViewController.swift */,
+				7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		4EE58FA32204D33B00918778 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4EE58FA42204D33E00918778 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		7F6686102204CA3F00639C91 = {
@@ -145,8 +136,8 @@
 		7F66861B2204CA3F00639C91 /* DineMe-Waiter */ = {
 			isa = PBXGroup;
 			children = (
-				4EE58FA42204D33E00918778 /* Model */,
-				4EE58FA32204D33B00918778 /* View */,
+				7FE6E258220D1DD90052CD8B /* View */,
+				7FE6E257220D1DD40052CD8B /* Model */,
 				4EE58FA22204D33300918778 /* Controllers */,
 				7F66861C2204CA3F00639C91 /* AppDelegate.swift */,
 				7F6686202204CA3F00639C91 /* Main.storyboard */,
@@ -176,6 +167,21 @@
 			path = "DineMe-WaiterUITests";
 			sourceTree = "<group>";
 		};
+		7FE6E257220D1DD40052CD8B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7FE6E258220D1DD90052CD8B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,6 +194,7 @@
 				7F6686162204CA3F00639C91 /* Frameworks */,
 				7F6686172204CA3F00639C91 /* Resources */,
 				63D3F175121F5650528BD1C8 /* [CP] Embed Pods Frameworks */,
+				3B6BD16900BBFFA3404A548A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,6 +313,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3B6BD16900BBFFA3404A548A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		63D3F175121F5650528BD1C8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,7 +338,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -324,7 +349,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -364,7 +389,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */,
+				7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */,
 				7F66861D2204CA3F00639C91 /* AppDelegate.swift in Sources */,
+				7FE6E25A220D1DF50052CD8B /* OngoingTablesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
