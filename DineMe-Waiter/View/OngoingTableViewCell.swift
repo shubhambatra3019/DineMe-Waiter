@@ -41,10 +41,11 @@ class OngoingTableViewCell: UITableViewCell {
     func setupViews() {
         addSubview(tableLabel)
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
-        //tableLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 5)
-        //tableLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
-        tableLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
-        tableLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+        
+        tableLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        tableLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        tableLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        tableLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
     }
 }

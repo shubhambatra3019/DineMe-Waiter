@@ -23,8 +23,6 @@ class OngoingTablesViewController: UIViewController {
     
     func setupView() {
         view.addSubview(ongoingTableView)
-        ongoingTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        ongoingTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         ongoingTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         ongoingTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         ongoingTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
