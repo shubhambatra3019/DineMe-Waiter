@@ -8,5 +8,6 @@ target 'DineMe-Waiter' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'FirebaseUI'
 
 end
