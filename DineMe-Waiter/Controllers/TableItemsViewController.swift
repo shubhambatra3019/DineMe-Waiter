@@ -14,6 +14,7 @@ class TableItemsViewController: UIViewController {
 
     let data = [OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00)]
     
+    
     lazy var itemsTable: UITableView = {
         let tableView = UITableView()
         tableView.register(OrderItemsTableViewCell.self, forCellReuseIdentifier: cellId)
@@ -23,8 +24,24 @@ class TableItemsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.isScrollEnabled = false
+        tableView.isScrollEnabled = true
+        tableView.bounces = true
         return tableView
+    }()
+    
+    let itemsView: UIView = {
+       let view = UIView()
+        view.backgroundColor = UIColor.blue
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        scrollView.isScrollEnabled = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
     }()
     
     var summaryStackView = OrderSummaryView(subTotal: "$40.00", tax: "$4.00", tip: "$5.00", total: "$49.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -42,25 +59,40 @@ class TableItemsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.blue
         setupViews()
-        
+        self.navigationItem.title = "Table1"
+        scrollView.delegate = self
         // Do any additional setup after loading the view.
     }
     
     
     func setupViews() {
+        let navigationHeight = self.navigationController?.navigationBar.frame.height
         itemsTable.layoutIfNeeded()
         summaryStackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(itemsTable)
-        view.addSubview(summaryStackView)
+        view.addSubview(itemsView)
+        itemsView.addSubview(scrollView)
+        itemsView.addSubview(itemsTable)
+        itemsView.addSubview(summaryStackView)
         view.addSubview(checkoutButton)
-        itemsTable.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        itemsTable.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        itemsTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        
+        itemsView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        itemsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        itemsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        itemsView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+        
+        scrollView.topAnchor.constraint(equalTo: itemsView.topAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: itemsView.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: itemsView.rightAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: itemsView.bottomAnchor).isActive = true
+        
+        itemsTable.leftAnchor.constraint(equalTo: itemsView.leftAnchor).isActive = true
+        itemsTable.rightAnchor.constraint(equalTo: itemsView.rightAnchor).isActive = true
+        itemsTable.topAnchor.constraint(equalTo: itemsView.topAnchor).isActive = true
         itemsTable.heightAnchor.constraint(equalToConstant: itemsTable.contentSize.height).isActive = true
+        
         summaryStackView.topAnchor.constraint(equalTo: itemsTable.bottomAnchor, constant: 20).isActive = true
-        summaryStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        summaryStackView.rightAnchor.constraint(equalTo: itemsView.rightAnchor, constant: 0).isActive = true
         summaryStackView.widthAnchor.constraint(equalToConstant: 180).isActive = true
         summaryStackView.heightAnchor.constraint(equalToConstant: 180).isActive = true
         

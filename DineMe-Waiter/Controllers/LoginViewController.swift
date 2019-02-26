@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
     @objc func handleLogin(){
         if let authUI = FUIAuth.defaultAuthUI(){
             authUI.delegate = self
-            let providers: [FUIAuthProvider] = [FUIEmailAuth(),FUIGoogleAuth()]
+            let providers: [FUIAuthProvider] = [FUIGoogleAuth()]
             authUI.providers = providers
             let authVC = authUI.authViewController()
             present(authVC, animated: true, completion: nil)
