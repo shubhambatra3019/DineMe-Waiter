@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0F847A22E1DD7234A321DCEF /* Pods_DineMe_Waiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */; };
+		7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */; };
+		7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */; };
+		7F464EA52224A8E4002C2DB5 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA42224A8E4002C2DB5 /* OrderItem.swift */; };
+		7F464EA72224DC33002C2DB5 /* OrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA62224DC33002C2DB5 /* OrderSummaryView.swift */; };
+		7F464EAB2224EF30002C2DB5 /* CustomizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EAA2224EF30002C2DB5 /* CustomizedView.swift */; };
 		7F66861D2204CA3F00639C91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66861C2204CA3F00639C91 /* AppDelegate.swift */; };
 		7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66861E2204CA3F00639C91 /* LoginViewController.swift */; };
 		7F6686222204CA3F00639C91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F6686202204CA3F00639C91 /* Main.storyboard */; };
@@ -16,8 +21,12 @@
 		7F6686322204CA4200639C91 /* DineMe_WaiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6686312204CA4200639C91 /* DineMe_WaiterTests.swift */; };
 		7F66863D2204CA4200639C91 /* DineMe_WaiterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66863C2204CA4200639C91 /* DineMe_WaiterUITests.swift */; };
 		7F66864B2204CE1B00639C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F66864A2204CE1B00639C91 /* GoogleService-Info.plist */; };
+		7F6D08B9220DBC5F00048577 /* AddNewTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6D08B8220DBC5F00048577 /* AddNewTableCollectionViewCell.swift */; };
+		7F95630D22189D8800B78A0F /* MenuItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F95630C22189D8800B78A0F /* MenuItemsTableViewCell.swift */; };
+		7F95630F2218ADAC00B78A0F /* MenuITem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F95630E2218ADAC00B78A0F /* MenuITem.swift */; };
 		7FE6E25A220D1DF50052CD8B /* OngoingTablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */; };
 		7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */; };
+		7FE6E260220D2AB60052CD8B /* AddNewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E25F220D2AB60052CD8B /* AddNewTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +48,11 @@
 
 /* Begin PBXFileReference section */
 		2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DineMe_Waiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemsViewController.swift; sourceTree = "<group>"; };
+		7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsTableViewCell.swift; sourceTree = "<group>"; };
+		7F464EA42224A8E4002C2DB5 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		7F464EA62224DC33002C2DB5 /* OrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryView.swift; sourceTree = "<group>"; };
+		7F464EAA2224EF30002C2DB5 /* CustomizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedView.swift; sourceTree = "<group>"; };
 		7F6686192204CA3F00639C91 /* DineMe-Waiter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DineMe-Waiter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F66861C2204CA3F00639C91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F66861E2204CA3F00639C91 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -53,8 +67,12 @@
 		7F66863C2204CA4200639C91 /* DineMe_WaiterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DineMe_WaiterUITests.swift; sourceTree = "<group>"; };
 		7F66863E2204CA4200639C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F66864A2204CE1B00639C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7F6D08B8220DBC5F00048577 /* AddNewTableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableCollectionViewCell.swift; sourceTree = "<group>"; };
+		7F95630C22189D8800B78A0F /* MenuItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemsTableViewCell.swift; sourceTree = "<group>"; };
+		7F95630E2218ADAC00B78A0F /* MenuITem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuITem.swift; sourceTree = "<group>"; };
 		7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTablesViewController.swift; sourceTree = "<group>"; };
 		7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTableViewCell.swift; sourceTree = "<group>"; };
+		7FE6E25F220D2AB60052CD8B /* AddNewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableViewController.swift; sourceTree = "<group>"; };
 		91376F2291D53B87658A9F5A /* Pods-DineMe-Waiter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DineMe-Waiter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter.debug.xcconfig"; sourceTree = "<group>"; };
 		B58904EF70F8BB0AFC069706 /* Pods-DineMe-Waiter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DineMe-Waiter.release.xcconfig"; path = "Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +125,8 @@
 			children = (
 				7F66861E2204CA3F00639C91 /* LoginViewController.swift */,
 				7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */,
+				7FE6E25F220D2AB60052CD8B /* AddNewTableViewController.swift */,
+				7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,6 +190,8 @@
 		7FE6E257220D1DD40052CD8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7F95630E2218ADAC00B78A0F /* MenuITem.swift */,
+				7F464EA42224A8E4002C2DB5 /* OrderItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +200,11 @@
 			isa = PBXGroup;
 			children = (
 				7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */,
+				7F6D08B8220DBC5F00048577 /* AddNewTableCollectionViewCell.swift */,
+				7F95630C22189D8800B78A0F /* MenuItemsTableViewCell.swift */,
+				7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */,
+				7F464EA62224DC33002C2DB5 /* OrderSummaryView.swift */,
+				7F464EAA2224EF30002C2DB5 /* CustomizedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,8 +415,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F6D08B9220DBC5F00048577 /* AddNewTableCollectionViewCell.swift in Sources */,
+				7FE6E260220D2AB60052CD8B /* AddNewTableViewController.swift in Sources */,
+				7F95630D22189D8800B78A0F /* MenuItemsTableViewCell.swift in Sources */,
+				7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */,
 				7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */,
+				7F464EA52224A8E4002C2DB5 /* OrderItem.swift in Sources */,
+				7F464EAB2224EF30002C2DB5 /* CustomizedView.swift in Sources */,
+				7F464EA72224DC33002C2DB5 /* OrderSummaryView.swift in Sources */,
+				7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */,
 				7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */,
+				7F95630F2218ADAC00B78A0F /* MenuITem.swift in Sources */,
 				7F66861D2204CA3F00639C91 /* AppDelegate.swift in Sources */,
 				7FE6E25A220D1DF50052CD8B /* OngoingTablesViewController.swift in Sources */,
 			);
@@ -570,6 +606,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EJD538U5T2;
 				INFOPLIST_FILE = "DineMe-Waiter/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -589,6 +626,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EJD538U5T2;
 				INFOPLIST_FILE = "DineMe-Waiter/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
