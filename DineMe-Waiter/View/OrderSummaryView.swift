@@ -36,7 +36,7 @@ class OrderSummaryView: UIView {
         return stackView
     }()
     
-    let totalLabel: UILabel = {
+    /*let totalLabel: UILabel = {
         let label = UILabel()
         label.text = "Total"
         label.font = UIFont(name: "Helvetica", size: 26)
@@ -44,7 +44,7 @@ class OrderSummaryView: UIView {
         return label
     }()
     
-    let totalValue: UILabel = {
+    var totalValue: UILabel = {
        let label = UILabel()
         label.text = "$50.00"
         label.font = UIFont(name: "Helvetica", size: 26)
@@ -52,19 +52,26 @@ class OrderSummaryView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let subtotalView = CustomizedView(title: "Subtotal", value: "$40.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+    */
+    var subtotalView = CustomizedView(title: "Subtotal", value: "$40.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
 
-    let taxView = CustomizedView(title: "Tax", value: "$0.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+    var taxView = CustomizedView(title: "Tax", value: "$0.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
     
-    let tipView = CustomizedView(title: "Tip", value: "$0.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+    var tipView = CustomizedView(title: "Tip", value: "$0.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
     
-    init(subTotal: String, tax: String, tip: String, total: String, frame: CGRect) {
+    var totalView: CustomizedView = {
+       let view = CustomizedView(title: "Total", value: "$50.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        view.titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
+        view.valueLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
+        return view
+     }()
+    
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        subtotalView.valueLabel.text = subTotal
+        /*subtotalView.valueLabel.text = subTotal
         taxView.valueLabel.text = tax
         tipView.valueLabel.text = tip
-        totalValue.text = total
+        totalValue.text = total*/
         setupViews()
     }
     
@@ -76,19 +83,20 @@ class OrderSummaryView: UIView {
         summaryStackView.addArrangedSubview(subtotalView)
         summaryStackView.addArrangedSubview(taxView)
         summaryStackView.addArrangedSubview(tipView)
+        summaryStackView.addArrangedSubview(totalView)
         addSubview(summaryStackView)
         summaryStackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         summaryStackView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         summaryStackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        summaryStackView.heightAnchor.constraint(equalToConstant: 120)
-        
-        totalStackView.addArrangedSubview(totalLabel)
+        summaryStackView.heightAnchor.constraint(equalToConstant: 160)
+        summaryStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        /*totalStackView.addArrangedSubview(totalLabel)
         totalStackView.addArrangedSubview(totalValue)
         addSubview(totalStackView)
         totalStackView.topAnchor.constraint(equalTo: summaryStackView.bottomAnchor, constant: 20).isActive = true
         totalStackView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         totalStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        totalStackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        totalStackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true*/
         
     }
     
