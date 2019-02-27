@@ -26,6 +26,7 @@ class TableItemsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.isScrollEnabled = true
         tableView.bounces = true
+        
         return tableView
     }()
     
@@ -40,7 +41,9 @@ class TableItemsViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = true
         scrollView.isScrollEnabled = true
+        scrollView.bounces = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
         return scrollView
     }()
     
@@ -62,13 +65,14 @@ class TableItemsViewController: UIViewController {
         setupViews()
         self.navigationItem.title = "Table1"
         scrollView.delegate = self
+        //let screenHeight = UIScreen.main.bounds.height
         // Do any additional setup after loading the view.
     }
     
     
     func setupViews() {
         let navigationHeight = self.navigationController?.navigationBar.frame.height
-        itemsTable.layoutIfNeeded()
+        let tableHeight = data.count * 60
         summaryStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(itemsView)
         itemsView.addSubview(scrollView)
@@ -79,7 +83,7 @@ class TableItemsViewController: UIViewController {
         itemsView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
         itemsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         itemsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        itemsView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+        itemsView.heightAnchor.constraint(equalToConstant: CGFloat(tableHeight)).isActive = true
         
         scrollView.topAnchor.constraint(equalTo: itemsView.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: itemsView.leftAnchor).isActive = true
@@ -89,7 +93,7 @@ class TableItemsViewController: UIViewController {
         itemsTable.leftAnchor.constraint(equalTo: itemsView.leftAnchor).isActive = true
         itemsTable.rightAnchor.constraint(equalTo: itemsView.rightAnchor).isActive = true
         itemsTable.topAnchor.constraint(equalTo: itemsView.topAnchor).isActive = true
-        itemsTable.heightAnchor.constraint(equalToConstant: itemsTable.contentSize.height).isActive = true
+        itemsTable.heightAnchor.constraint(equalToConstant: CGFloat(tableHeight)).isActive = true
         
         summaryStackView.topAnchor.constraint(equalTo: itemsTable.bottomAnchor, constant: 20).isActive = true
         summaryStackView.rightAnchor.constraint(equalTo: itemsView.rightAnchor, constant: 0).isActive = true
@@ -126,3 +130,24 @@ extension TableItemsViewController: UITableViewDelegate, UITableViewDataSource {
         return 60.0
     }
 }
+
+/*extension TableItemsViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        let screenHeight = UIScreen.main.bounds.height
+        let scrollViewContentHeight = CGFloat((data.count * 60) + 200)
+        if scrollView == self.itemsTable {
+            if yOffset >= scrollViewContentHeight - screenHeight {
+                scrollView.isScrollEnabled = false
+                itemsTable.isScrollEnabled = true
+            }
+        }
+        
+        if scrollView == self.scrollView {
+            if yOffset <= 0 {
+                self.scrollView.isScrollEnabled = true
+                self.itemsTable.isScrollEnabled = false
+            }
+        }
+    }
+}*/
