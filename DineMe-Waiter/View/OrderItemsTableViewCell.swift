@@ -69,11 +69,12 @@ class OrderItemsTableViewCell: UITableViewCell {
         cellStack.addArrangedSubview(itemNameLabel)
         cellStack.addArrangedSubview(priceLabel)
         addSubview(cellStack)
-        
+        priceLabel.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
         cellStack.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         cellStack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        //cellStack.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
         cellStack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        cellStack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+        cellStack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
     }
     
 }

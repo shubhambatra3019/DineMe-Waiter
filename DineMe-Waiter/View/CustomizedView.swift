@@ -22,17 +22,17 @@ class CustomizedView: UIView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Sample Title"
-        label.textAlignment = .right
+        label.textAlignment = .left
         
         //label.frame = CGRect(x: 0, y: 0, width: 80, height: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let valueLabel: UILabel = {
+    var valueLabel: UILabel = {
         let label = UILabel()
         label.text = "$0.00"
-        label.textAlignment = .left
+        label.textAlignment = .right
         label.textColor = UIColor.darkGray
         //label.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -55,8 +55,8 @@ class CustomizedView: UIView {
         addSubview(titleLabel)
         addSubview(valueLabel)
         
-        self.heightAnchor.constraint(equalToConstant: 40)
-        self.widthAnchor.constraint(equalToConstant: 180)
+        //self.heightAnchor.constraint(equalToConstant: 40)
+        //self.widthAnchor.constraint(equalToConstant: 180)
         
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
@@ -65,7 +65,8 @@ class CustomizedView: UIView {
         
         valueLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
         valueLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
-        valueLabel.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 20).isActive = true
+        //valueLabel.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 20).isActive = true
+        valueLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         valueLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
         
     }
