@@ -25,9 +25,12 @@
 		7F6D08B9220DBC5F00048577 /* AddNewTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6D08B8220DBC5F00048577 /* AddNewTableCollectionViewCell.swift */; };
 		7F95630D22189D8800B78A0F /* MenuItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F95630C22189D8800B78A0F /* MenuItemsTableViewCell.swift */; };
 		7F95630F2218ADAC00B78A0F /* MenuITem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F95630E2218ADAC00B78A0F /* MenuITem.swift */; };
+		7F9B23322227518C00BE6B94 /* QuantityChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B23312227518C00BE6B94 /* QuantityChangeView.swift */; };
+		7F9B23362229A25400BE6B94 /* AddMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B23352229A25400BE6B94 /* AddMenuItemViewController.swift */; };
+		7F9B23382229C9A100BE6B94 /* AddNewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B23372229C9A100BE6B94 /* AddNewTableViewController.swift */; };
 		7FE6E25A220D1DF50052CD8B /* OngoingTablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */; };
 		7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */; };
-		7FE6E260220D2AB60052CD8B /* AddNewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E25F220D2AB60052CD8B /* AddNewTableViewController.swift */; };
+		7FE6E260220D2AB60052CD8B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E25F220D2AB60052CD8B /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,9 +75,12 @@
 		7F6D08B8220DBC5F00048577 /* AddNewTableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F95630C22189D8800B78A0F /* MenuItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemsTableViewCell.swift; sourceTree = "<group>"; };
 		7F95630E2218ADAC00B78A0F /* MenuITem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuITem.swift; sourceTree = "<group>"; };
+		7F9B23312227518C00BE6B94 /* QuantityChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityChangeView.swift; sourceTree = "<group>"; };
+		7F9B23352229A25400BE6B94 /* AddMenuItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuItemViewController.swift; sourceTree = "<group>"; };
+		7F9B23372229C9A100BE6B94 /* AddNewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableViewController.swift; sourceTree = "<group>"; };
 		7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTablesViewController.swift; sourceTree = "<group>"; };
 		7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTableViewCell.swift; sourceTree = "<group>"; };
-		7FE6E25F220D2AB60052CD8B /* AddNewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableViewController.swift; sourceTree = "<group>"; };
+		7FE6E25F220D2AB60052CD8B /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		91376F2291D53B87658A9F5A /* Pods-DineMe-Waiter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DineMe-Waiter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter.debug.xcconfig"; sourceTree = "<group>"; };
 		B58904EF70F8BB0AFC069706 /* Pods-DineMe-Waiter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DineMe-Waiter.release.xcconfig"; path = "Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,8 +133,10 @@
 			children = (
 				7F66861E2204CA3F00639C91 /* LoginViewController.swift */,
 				7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */,
-				7FE6E25F220D2AB60052CD8B /* AddNewTableViewController.swift */,
+				7FE6E25F220D2AB60052CD8B /* MenuViewController.swift */,
 				7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */,
+				7F9B23352229A25400BE6B94 /* AddMenuItemViewController.swift */,
+				7F9B23372229C9A100BE6B94 /* AddNewTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -208,6 +216,7 @@
 				7F464EA62224DC33002C2DB5 /* OrderSummaryView.swift */,
 				7F464EAA2224EF30002C2DB5 /* CustomizedView.swift */,
 				7F464EAE2226EAB3002C2DB5 /* OrderedItemsSummaryTableViewCell.swift */,
+				7F9B23312227518C00BE6B94 /* QuantityChangeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,10 +379,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -389,10 +397,9 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -415,13 +422,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAnonymousAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseEmailAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
@@ -430,12 +435,10 @@
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseEmailAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
@@ -474,10 +477,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F6D08B9220DBC5F00048577 /* AddNewTableCollectionViewCell.swift in Sources */,
-				7FE6E260220D2AB60052CD8B /* AddNewTableViewController.swift in Sources */,
+				7FE6E260220D2AB60052CD8B /* MenuViewController.swift in Sources */,
+				7F9B23322227518C00BE6B94 /* QuantityChangeView.swift in Sources */,
 				7F95630D22189D8800B78A0F /* MenuItemsTableViewCell.swift in Sources */,
 				7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */,
+				7F9B23382229C9A100BE6B94 /* AddNewTableViewController.swift in Sources */,
 				7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */,
+				7F9B23362229A25400BE6B94 /* AddMenuItemViewController.swift in Sources */,
 				7F464EAF2226EAB3002C2DB5 /* OrderedItemsSummaryTableViewCell.swift in Sources */,
 				7F464EA52224A8E4002C2DB5 /* OrderItem.swift in Sources */,
 				7F464EAB2224EF30002C2DB5 /* CustomizedView.swift in Sources */,
