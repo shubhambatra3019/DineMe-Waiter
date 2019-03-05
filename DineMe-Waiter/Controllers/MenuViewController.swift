@@ -24,7 +24,7 @@ class MenuViewController: UIViewController {
         layout.minimumInteritemSpacing = 5
         
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: 100), collectionViewLayout: layout)
-        collectionView.register(AddNewTableCollectionViewCell.self, forCellWithReuseIdentifier: collectionViewCellId)
+        collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: collectionViewCellId)
         collectionView.backgroundColor = UIColor.blue
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -77,7 +77,7 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellId, for: indexPath) as! AddNewTableCollectionViewCell
+        let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellId, for: indexPath) as! MenuCollectionViewCell
         cell.backgroundColor = UIColor.white
         cell.peopleLabel.text = categories[indexPath.row]
         return cell
