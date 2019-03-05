@@ -1,8 +1,8 @@
 //
-//  AddNewTableCollectionViewCell.swift
+//  AddNewTabeCollectionViewCell.swift
 //  DineMe-Waiter
 //
-//  Created by Shubham Batra on 08/02/19.
+//  Created by Shubham Batra on 01/03/19.
 //  Copyright © 2019 Esper. All rights reserved.
 //
 
@@ -16,16 +16,17 @@ class AddNewTableCollectionViewCell: UICollectionViewCell {
                 self.backgroundColor = UIColor.green
             }
             else {
-                self.backgroundColor = UIColor.white
+                self.backgroundColor = UIColor.gray
             }
         }
     }
     
-    var peopleLabel: UILabel = {
-        let label  = UILabel()
+    let numberLabel: UILabel = {
+        let label = UILabel()
         label.text = "1"
         label.textAlignment = .center
-        label.backgroundColor = UIColor.clear
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor.white
         return label
     }()
     
@@ -39,14 +40,16 @@ class AddNewTableCollectionViewCell: UICollectionViewCell {
     }
     
     func setupViews() {
-        addSubview(peopleLabel)
-        peopleLabel.translatesAutoresizingMaskIntoConstraints = false
-        peopleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        peopleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        peopleLabel.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
-        peopleLabel.heightAnchor.constraint(equalToConstant: self.frame.height).isActive = true
-        //peopleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4)
-        //peopleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 4)
+        addSubview(numberLabel)
+        self.backgroundColor = UIColor.gray
+        self.layer.cornerRadius = 4
+        self.heightAnchor.constraint(equalToConstant: 30)
+        self.widthAnchor.constraint(equalToConstant: 30)
+        numberLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        numberLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        numberLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        numberLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
+    
     
 }
