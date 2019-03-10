@@ -79,12 +79,12 @@ class AddMenuItemViewController: UIViewController {
         itemNameLabel.topAnchor.constraint(equalTo: itemView.topAnchor, constant: 40).isActive = true
         itemNameLabel.rightAnchor.constraint(equalTo: itemView.rightAnchor).isActive = true
         itemNameLabel.bottomAnchor.constraint(equalTo: itemView.bottomAnchor, constant: -40).isActive = true
-        
+
         quantityView.topAnchor.constraint(equalTo: itemView.bottomAnchor, constant: 40).isActive = true
         quantityView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         quantityView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         quantityView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+
         noteTextView.topAnchor.constraint(equalTo: quantityView.bottomAnchor, constant: 40).isActive =  true
         noteTextView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         noteTextView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
