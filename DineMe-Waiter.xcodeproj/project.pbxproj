@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F847A22E1DD7234A321DCEF /* Pods_DineMe_Waiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */; };
 		7F24EE722231BB2E00B5676B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F24EE712231BB2E00B5676B /* User.swift */; };
+		7F336C8722402F8C00247E56 /* Encodable+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F336C8622402F8C00247E56 /* Encodable+Decodable.swift */; };
 		7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */; };
 		7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */; };
 		7F464EA52224A8E4002C2DB5 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA42224A8E4002C2DB5 /* OrderItem.swift */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DineMe_Waiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F24EE712231BB2E00B5676B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7F336C8622402F8C00247E56 /* Encodable+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Decodable.swift"; sourceTree = "<group>"; };
 		7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemsViewController.swift; sourceTree = "<group>"; };
 		7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsTableViewCell.swift; sourceTree = "<group>"; };
 		7F464EA42224A8E4002C2DB5 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
@@ -156,6 +158,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		7F336C8522402F7300247E56 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7F336C8622402F8C00247E56 /* Encodable+Decodable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7F6686102204CA3F00639C91 = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +191,7 @@
 		7F66861B2204CA3F00639C91 /* DineMe-Waiter */ = {
 			isa = PBXGroup;
 			children = (
+				7F336C8522402F7300247E56 /* Extensions */,
 				7FE6E258220D1DD90052CD8B /* View */,
 				7FE6E257220D1DD40052CD8B /* Model */,
 				4EE58FA22204D33300918778 /* Controllers */,
@@ -512,6 +523,7 @@
 				7F464EA72224DC33002C2DB5 /* OrderSummaryView.swift in Sources */,
 				7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */,
 				7F89CEEC222F02DD001B7613 /* AddNewTableCollectionViewController.swift in Sources */,
+				7F336C8722402F8C00247E56 /* Encodable+Decodable.swift in Sources */,
 				7F89CEF422303E6F001B7613 /* OrderTableHeaderView.swift in Sources */,
 				7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */,
 				7F95630F2218ADAC00B78A0F /* MenuITem.swift in Sources */,

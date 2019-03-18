@@ -66,11 +66,11 @@ class OngoingTablesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationItem.hidesBackButton = true
-        if userData.restaurants.count == 0 {
+        if userData?.restaurants.count == 0 {
             print("No Restaurants To Show")
         }
         else {
-            startListeningForOngoingTables(restuarantID: userData.restaurants[0], waiterID: userData.userId)
+            startListeningForOngoingTables(restuarantID: (userData?.restaurants[0])!, waiterID: (userData?.userId)!)
         }
     }
     
@@ -100,7 +100,7 @@ class OngoingTablesViewController: UIViewController {
             self.ongoingTables = []
             for document in snapshot.documents {
                 let order = Order(dict: document.data())
-                self.ongoingTables.append(order)
+                self.ongoingTables.append(order!)
             }
             self.ongoingTableView.reloadData()
         })

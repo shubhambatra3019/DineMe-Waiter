@@ -122,7 +122,7 @@ extension LoginViewController: FUIAuthDelegate{
                 }
                 
                 if let document = document {
-                    let user = User(dict: document.data()!)
+                    let user = User(dict: document.data() ?? [:])
                     if document.exists {
                         print("Document already exists")
                     }
