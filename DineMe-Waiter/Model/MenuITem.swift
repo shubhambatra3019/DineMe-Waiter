@@ -10,9 +10,9 @@ import Foundation
 
 struct MenuItem {
     
-    var name: String
-    var description: String
-    var price: Double
+    var name: String? = ""
+    var description: String? = ""
+    var price: Double? = 0
 
     init(itemName: String, itemDescription: String, itemPrice: Double) {
         self.name = itemName
@@ -21,9 +21,9 @@ struct MenuItem {
     }
     
     init(dict: [String : Any]) {
-        self.name = dict["name"] as! String
-        self.description = dict["description"] as! String
-        self.price = dict["price"] as! Double
+        self.name = dict["name"] as? String
+        self.description = dict["description"] as? String
+        self.price = dict["price"] as? Double
     }
     
 }
