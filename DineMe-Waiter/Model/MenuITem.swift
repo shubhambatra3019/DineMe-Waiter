@@ -21,9 +21,9 @@ struct MenuItem {
     }
     
     init(dict: [String : Any]) {
-        self.name = dict["name"] as! String
-        self.description = dict["description"] as! String
-        self.price = dict["price"] as! Double
+        self.name = dict["name"] as? String ?? ""
+        self.description = dict["description"] as? String ?? ""
+        self.price = dict["price"] as? Double ?? 0
     }
     
 }

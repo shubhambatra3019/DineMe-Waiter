@@ -54,6 +54,12 @@ class AddMenuItemViewController: UIViewController {
         return button
     }()
     
+    var menuItem = MenuItem(dict: [:]) {
+        didSet {
+            itemNameLabel.text = menuItem.name
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -63,7 +69,7 @@ class AddMenuItemViewController: UIViewController {
     }
     
     @objc func addButtonPressed() {
-        print("Button pressed")
+        self.dismiss(animated: true, completion: nil)
     }
     
     func setupViews() {
@@ -108,7 +114,7 @@ extension AddMenuItemViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Add a not for the kitchen..."
+            textView.text = "Add a note for the kitchen..."
             textView.textColor = UIColor.lightGray
         }
     }

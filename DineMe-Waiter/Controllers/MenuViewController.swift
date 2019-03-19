@@ -145,6 +145,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let addMenuItemVC = AddMenuItemViewController()
+        addMenuItemVC.menuItem = items[indexPath.section][indexPath.row]
+        self.navigationController?.present(addMenuItemVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
