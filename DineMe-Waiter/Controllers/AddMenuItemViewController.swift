@@ -19,7 +19,7 @@ class AddMenuItemViewController: UIViewController {
     
     let itemNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Butter Chicken"
+        label.text = "Sample Item"
         label.font = UIFont(name: "Helvetica-Bold", size: 30.0)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
