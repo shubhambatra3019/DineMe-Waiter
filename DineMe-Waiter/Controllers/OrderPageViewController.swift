@@ -88,6 +88,8 @@ class OrderPageViewController: UIViewController {
      }
     
     @objc func menuButtonPressed() {
+        let menuVC = MenuViewController()
+        self.navigationController?.pushViewController(menuVC, animated: true)
         print("Menu Button was Pressed")
     }
     
