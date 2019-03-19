@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0F847A22E1DD7234A321DCEF /* Pods_DineMe_Waiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */; };
+		4FB33FBA22415F9000493528 /* WaiterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB33FB922415F9000493528 /* WaiterProfileViewController.swift */; };
+		4FB33FBD2241601C00493528 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB33FBC2241601C00493528 /* Assets.xcassets */; };
 		7F24EE722231BB2E00B5676B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F24EE712231BB2E00B5676B /* User.swift */; };
 		7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */; };
 		7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */; };
@@ -58,6 +60,8 @@
 
 /* Begin PBXFileReference section */
 		2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DineMe_Waiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FB33FB922415F9000493528 /* WaiterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaiterProfileViewController.swift; sourceTree = "<group>"; };
+		4FB33FBC2241601C00493528 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F24EE712231BB2E00B5676B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemsViewController.swift; sourceTree = "<group>"; };
 		7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				7F9B23352229A25400BE6B94 /* AddMenuItemViewController.swift */,
 				7F89CEEB222F02DD001B7613 /* AddNewTableCollectionViewController.swift */,
 				7F89CEEF222F2DE7001B7613 /* OrderPageViewController.swift */,
+				4FB33FB922415F9000493528 /* WaiterProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				7F6686252204CA4200639C91 /* LaunchScreen.storyboard */,
 				7F6686282204CA4200639C91 /* Info.plist */,
 				7F66864A2204CE1B00639C91 /* GoogleService-Info.plist */,
+				4FB33FBC2241601C00493528 /* Assets.xcassets */,
 			);
 			path = "DineMe-Waiter";
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 			files = (
 				7F6686272204CA4200639C91 /* LaunchScreen.storyboard in Resources */,
 				7F66864B2204CE1B00639C91 /* GoogleService-Info.plist in Resources */,
+				4FB33FBD2241601C00493528 /* Assets.xcassets in Resources */,
 				7F6686222204CA3F00639C91 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +503,7 @@
 				7F6D08B9220DBC5F00048577 /* MenuCollectionViewCell.swift in Sources */,
 				7FE6E260220D2AB60052CD8B /* MenuViewController.swift in Sources */,
 				7F9B23322227518C00BE6B94 /* QuantityChangeView.swift in Sources */,
+				4FB33FBA22415F9000493528 /* WaiterProfileViewController.swift in Sources */,
 				7F95630D22189D8800B78A0F /* MenuItemsTableViewCell.swift in Sources */,
 				7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */,
 				7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */,
