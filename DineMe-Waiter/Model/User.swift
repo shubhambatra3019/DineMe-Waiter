@@ -17,7 +17,7 @@ struct User {
     var userId: String
     var working: Bool
     
-    init(name: String, email: String, restaurants: [String] = [], role: String = "waiter", shifts: [Any] = [], userId: String, working: Bool = false) {
+    init(name: String, email: String, restaurants: [String] = ["2SNsflQCvsGZlblq3T9N"], role: String = "waiter", shifts: [Any] = [], userId: String, working: Bool = false) {
         self.name = name
         self.email = email
         self.restaurants = restaurants
