@@ -18,7 +18,6 @@
 		7F66861D2204CA3F00639C91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66861C2204CA3F00639C91 /* AppDelegate.swift */; };
 		7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66861E2204CA3F00639C91 /* LoginViewController.swift */; };
 		7F6686222204CA3F00639C91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F6686202204CA3F00639C91 /* Main.storyboard */; };
-		7F6686242204CA4200639C91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6686232204CA4200639C91 /* Assets.xcassets */; };
 		7F6686272204CA4200639C91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F6686252204CA4200639C91 /* LaunchScreen.storyboard */; };
 		7F6686322204CA4200639C91 /* DineMe_WaiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6686312204CA4200639C91 /* DineMe_WaiterTests.swift */; };
 		7F66863D2204CA4200639C91 /* DineMe_WaiterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F66863C2204CA4200639C91 /* DineMe_WaiterUITests.swift */; };
@@ -70,7 +69,6 @@
 		7F66861C2204CA3F00639C91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F66861E2204CA3F00639C91 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7F6686212204CA3F00639C91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7F6686232204CA4200639C91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F6686262204CA4200639C91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F6686282204CA4200639C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F66862D2204CA4200639C91 /* DineMe-WaiterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DineMe-WaiterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +184,6 @@
 				4EE58FA22204D33300918778 /* Controllers */,
 				7F66861C2204CA3F00639C91 /* AppDelegate.swift */,
 				7F6686202204CA3F00639C91 /* Main.storyboard */,
-				7F6686232204CA4200639C91 /* Assets.xcassets */,
 				7F6686252204CA4200639C91 /* LaunchScreen.storyboard */,
 				7F6686282204CA4200639C91 /* Info.plist */,
 				7F66864A2204CE1B00639C91 /* GoogleService-Info.plist */,
@@ -352,7 +349,6 @@
 			files = (
 				7F6686272204CA4200639C91 /* LaunchScreen.storyboard in Resources */,
 				7F66864B2204CE1B00639C91 /* GoogleService-Info.plist in Resources */,
-				7F6686242204CA4200639C91 /* Assets.xcassets in Resources */,
 				7F6686222204CA3F00639C91 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,9 +394,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -418,7 +414,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -435,7 +431,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		68ADE1FF923275359A7A82F4 /* [CP] Copy Pods Resources */ = {
@@ -444,10 +440,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAnonymousAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseEmailAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
@@ -457,9 +453,9 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseEmailAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
@@ -469,7 +465,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F0DCD813E107A3B0AC528AC5 /* [CP] Check Pods Manifest.lock */ = {
