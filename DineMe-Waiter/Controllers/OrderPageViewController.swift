@@ -34,6 +34,30 @@ class OrderPageViewController: UIViewController {
         return tableView
     }()
     
+    let addItemButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        button.addTarget(self, action: #selector(menuButtonPressed), for: .touchUpInside)
+        button.backgroundColor = UIColor.purple
+        button.setTitle("Add Items", for: .normal)
+        button.titleLabel?.textColor = UIColor.white
+        button.titleLabel?.textAlignment = .center
+        button.layer.cornerRadius = 25.0
+        button.layer.zPosition = 1.0
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let checkoutButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        button.addTarget(self, action: #selector(checkoutButtonPressed), for: .touchUpInside)
+        button.backgroundColor = UIColor.green
+        button.setTitle("Checkout", for: .normal)
+        button.titleLabel?.textColor = UIColor.green
+        button.titleLabel?.textAlignment = .center
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -44,11 +68,33 @@ class OrderPageViewController: UIViewController {
     
     func setupViews() {
         view.addSubview(orderTableView)
+        view.addSubview(addItemButton)
+        view.addSubview(checkoutButton)
+        
         orderTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         orderTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         orderTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         orderTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        addItemButton.bottomAnchor.constraint(equalTo: checkoutButton.topAnchor, constant: -40).isActive = true
+        addItemButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5).isActive = true
+        addItemButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        addItemButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        checkoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        checkoutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        checkoutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        checkoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
      }
+    
+    @objc func menuButtonPressed() {
+        print("Menu Button was Pressed")
+    }
+    
+    @objc func checkoutButtonPressed() {
+        print("Button was Pressed")
+    }
+    
     
     @objc func moveToOngoingButtonTapped() {
         let temp = queued

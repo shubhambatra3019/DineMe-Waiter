@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import FirebaseFirestore
+
 
 class LoginViewController: UIViewController {
     
@@ -46,6 +48,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if UserDefaults.standard.object(forKey: "user") == nil {
+            print("Not Logged in")
+        }
+        else {
+            presentOngoingTablesPage()
+        }
+        
         setupUI()
     }
     
@@ -82,16 +92,50 @@ class LoginViewController: UIViewController {
     @objc func handleSignup(){
         
     }
+    
+    func presentOngoingTablesPage() {
+        let ongoingTablesVC = OngoingTablesViewController()
+        navigationController?.pushViewController(ongoingTablesVC, animated: true)
+        
+    }
+    
 }
 
 extension LoginViewController: FUIAuthDelegate{
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
-        guard error != nil else{
+        if error != nil {
             print(error?.localizedDescription)
+            print("error happened")
             return
         }
-        
+        else {
         // Present to main root View Controller
-        print("signInSuccessful")
+            guard let userData = authDataResult?.user else{
+                print("Data not Found")
+                return
+            }
+            let userDocument = Firestore.firestore().collection("users").document(userData.uid)
+            
+            userDocument.getDocument { (document, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                }
+                
+                if let document = document {
+                    let user = User(dict: document.data()!)
+                    if document.exists {
+                        print("Document already exists")
+                    }
+                    else {
+                    
+                        userDocument.setData(user.documentData)
+                    }
+                    UserDefaults.standard.set(user.documentData, forKey: "user")
+                    self.presentOngoingTablesPage()
+                }
+            }
+            
+            
+        }
     }
 }

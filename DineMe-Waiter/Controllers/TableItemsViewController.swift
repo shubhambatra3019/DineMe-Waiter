@@ -40,21 +40,6 @@ class TableItemsViewController: UIViewController {
         return button
     }()
     
-    let addItemButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-        button.addTarget(self, action: #selector(menuButtonPressed), for: .touchUpInside)
-        button.backgroundColor = UIColor.purple
-        button.setTitle("Add Items", for: .normal)
-        button.titleLabel?.textColor = UIColor.white
-        button.titleLabel?.textAlignment = .center
-        button.layer.cornerRadius = 25.0
-        button.layer.zPosition = 1.0
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blue
@@ -68,7 +53,7 @@ class TableItemsViewController: UIViewController {
         
         view.addSubview(itemsTable)
         view.addSubview(checkoutButton)
-        view.addSubview(addItemButton)
+        
         itemsTable.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         itemsTable.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         itemsTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -79,19 +64,10 @@ class TableItemsViewController: UIViewController {
         checkoutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         checkoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        addItemButton.bottomAnchor.constraint(equalTo: checkoutButton.topAnchor, constant: -40).isActive = true
-        addItemButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5).isActive = true
-        addItemButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        addItemButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
     }
     
     @objc func checkoutButtonPressed() {
         print("Button was Pressed")
-    }
-    
-    @objc func menuButtonPressed() {
-        print("Menu Button was Pressed")
     }
     
 }
