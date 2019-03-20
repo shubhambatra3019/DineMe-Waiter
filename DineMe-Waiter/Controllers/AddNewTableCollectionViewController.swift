@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class AddNewTableCollectionViewController: UIViewController {
 
@@ -16,7 +17,9 @@ class AddNewTableCollectionViewController: UIViewController {
     
     var people = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     
-    var tables = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]
+    let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
+    
+    var tables = [Table]()
     
     let selectPartySizeHeaderView: HeaderView = {
         let view = HeaderView(title: "Select Party Size", frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -75,6 +78,14 @@ class AddNewTableCollectionViewController: UIViewController {
         return button
     }()
     
+    let closeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "close"), for: .normal)
+        button.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -83,14 +94,26 @@ class AddNewTableCollectionViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let restaurantID = userData?.restaurants[0]
+        getAllTablesForRestaurant(restaurantID: restaurantID!)
+    }
+    
     func setupViews() {
         view.addSubview(selectPartySizeHeaderView)
         view.addSubview(selectPeopleCollectionView)
         view.addSubview(selectTableHeaderView)
         view.addSubview(selectTableCollectionView)
         view.addSubview(addTableButton)
+        view.addSubview(closeButton)
         
-        selectPartySizeHeaderView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        closeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        selectPartySizeHeaderView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 20).isActive = true
         selectPartySizeHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         selectPartySizeHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         selectPartySizeHeaderView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
@@ -117,8 +140,33 @@ class AddNewTableCollectionViewController: UIViewController {
         
     }
     
+    func getAllTablesForRestaurant(restaurantID: String) {
+        let query = Firestore.firestore().collection("restaurants").document(restaurantID)
+        
+        query.getDocument { (document, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            }
+            
+            if let document = document {
+                let tablesDict = document["Tables"] as! [[String: Any]]
+                for tab in tablesDict {
+                    let table = Table(dict: tab)
+                    self.tables.append(table)
+                }
+                self.selectTableCollectionView.reloadData()
+            }
+        }
+    }
+    
+    
+    
     @objc func addTableButtonPressed() {
         print("add table button pressed")
+    }
+    
+    @objc func closeButtonPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
@@ -151,7 +199,7 @@ extension AddNewTableCollectionViewController: UICollectionViewDelegate, UIColle
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tableCollectionViewCellId, for: indexPath) as! AddNewTableCollectionViewCell
-            cell.numberLabel.text = tables[indexPath.row]
+            cell.numberLabel.text = tables[indexPath.row].table
             return cell
         }
     }

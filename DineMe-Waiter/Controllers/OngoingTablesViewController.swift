@@ -66,6 +66,7 @@ class OngoingTablesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTable))
         if userData?.restaurants.count == 0 {
             print("No Restaurants To Show")
         }
@@ -78,6 +79,11 @@ class OngoingTablesViewController: UIViewController {
         super.viewWillDisappear(true)
         ongoingTablesListener?.remove()
         ongoingTablesListener = nil
+    }
+    
+    @objc func addNewTable() {
+        let addNewTableVC = AddNewTableCollectionViewController()
+        self.navigationController?.present(addNewTableVC, animated: true, completion: nil)
     }
     
     @objc func logoutButtonPressed() {
@@ -99,8 +105,10 @@ class OngoingTablesViewController: UIViewController {
             guard let snapshot = snapshot else { return }
             self.ongoingTables = []
             for document in snapshot.documents {
+                print(document.data())
                 let order = Order(dict: document.data())
-                self.ongoingTables.append(order!)
+                print("json converted")
+                self.ongoingTables.append(order)
             }
             self.ongoingTableView.reloadData()
         })
