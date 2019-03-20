@@ -1,0 +1,6 @@
+framework module Pods_DineMe_Waiter {
+  umbrella header "Pods-DineMe-Waiter-umbrella.h"
+
+  export *
+  module * { export * }
+}

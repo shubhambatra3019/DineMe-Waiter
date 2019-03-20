@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class MenuViewController: UIViewController {
 
-    let categories = ["Chicken", "Lamb", "Specials", "Dessert", "Drinks", "Veg"]
-    let items = [["Chicken1","Chicken1","Chicken1","Chicken1","Chicken1","Chicken1"], ["Lamb1","Lamb1","Lamb1","Lamb1","Lamb1","Lamb1"], ["Specials1", "Specials1", "Specials1", "Specials1", "Specials1", "Specials1"], ["Chicken1","Chicken1","Chicken1","Chicken1","Chicken1","Chicken1"], ["Chicken1","Chicken1","Chicken1","Chicken1","Chicken1","Chicken1"], ["Chicken1","Chicken1","Chicken1","Chicken1","Chicken1","Chicken1"]]
+    var categories = [String]()
+    var items = [[MenuItem]]()
     
     let tableViewCellId = "menuCell"
     let collectionViewCellId = "myCell"
+    
+    let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
     lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -59,6 +63,12 @@ class MenuViewController: UIViewController {
         setupTableView()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getMenuForRestaurant(restaurantID: userData.restaurants[0])
+    }
 
     func setupCollectionView() {
         self.myCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +78,31 @@ class MenuViewController: UIViewController {
         self.myCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
+    func getMenuForRestaurant(restaurantID: String) {
+        let restaurantDocument = Firestore.firestore().collection("restaurants").document(restaurantID)
+        restaurantDocument.getDocument { (documentSnapshot, error) in
+            if error != nil {
+                print("error occured")
+                return
+            }
+            else {
+                if let document = documentSnapshot {
+                    print(document.data())
+                    let menu = document["menu"] as! [String : Any]
+                    self.categories = Array(menu.keys)
+                    for category in self.categories {
+                        var tempArray = [MenuItem]()
+                        for item in menu[category] as! [[String : Any]] {
+                            tempArray.append(MenuItem(dict: item))
+                        }
+                        self.items.append(tempArray)
+                    }
+                    self.myCollectionView.reloadData()
+                    self.menuTableView.reloadData()
+                }
+            }
+        }
+    }
     
 }
 
@@ -110,11 +145,14 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let addMenuItemVC = AddMenuItemViewController()
+        addMenuItemVC.menuItem = items[indexPath.section][indexPath.row]
+        self.navigationController?.present(addMenuItemVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellId, for: indexPath) as! MenuItemsTableViewCell
-        cell.itemLabel.text = items[indexPath.section][indexPath.row]
+        cell.itemLabel.text = items[indexPath.section][indexPath.row].name
         //cell.descriptionLabel.text = menuItems[indexPath.row].itemDescription
         //cell.priceLabel.text = String(menuItems[indexPath.row].itemPrice)
         return cell

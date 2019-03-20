@@ -122,15 +122,20 @@ extension LoginViewController: FUIAuthDelegate{
                 }
                 
                 if let document = document {
-                    let user = User(dict: document.data() ?? [:])
+
                     if document.exists {
                         print("Document already exists")
+                        let user = User(dict: document.data() ?? [:])
+                        UserDefaults.standard.set(user.documentData, forKey: "user")
+                        
                     }
                     else {
-                    
-                        userDocument.setData(user.documentData)
+                        let newUser = User(name: userData.displayName ?? "", email: userData.email!, userId: userData.uid)
+                        userDocument.setData(newUser.documentData)
+                        UserDefaults.standard.set(newUser.documentData, forKey: "user")
                     }
-                    UserDefaults.standard.set(user.documentData, forKey: "user")
+                    
+                    
                     self.presentOngoingTablesPage()
                 }
             }
