@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Order : Encodable, Decodable{
+struct Order{
     var table: String
     var completed: Bool
     var creationDateTime: Date
@@ -18,7 +18,18 @@ struct Order : Encodable, Decodable{
     var managerID: String
     var paidDateTime: Date
     
-    /*init(dict: [String: Any]) {
+    init(table: String, completed: Bool, creationDateTime: Date = Date(), items: [OrderItem] = [], restaurantID: String, waiterID: String, managerID: String = "abcd", paidDateTime: Date) {
+        self.table = table
+        self.completed = completed
+        self.creationDateTime = creationDateTime
+        self.items = items
+        self.restaurantID = restaurantID
+        self.waiterID = waiterID
+        self.managerID = managerID
+        self.paidDateTime = paidDateTime
+    }
+    
+    init(dict: [String: Any]) {
         self.table = dict["table"] as! String
         self.completed = dict["completed"] as! Bool
         self.creationDateTime = dict["creationDateTime"] as! Date
@@ -31,10 +42,19 @@ struct Order : Encodable, Decodable{
         self.waiterID = dict["waiterID"] as! String
         self.managerID = dict["managerID"] as! String
         self.paidDateTime = dict["paidDateTime"] as! Date
-    }*/
+    }
     
-    /*var documentData: [String: Any] {
-     
-    }*/
+    var documentData: [String: Any] {
+        return [
+        "table": table,
+        "completed": completed,
+        "creationDateTime": creationDateTime,
+        "items": items,
+        "restaurantID": restaurantID,
+        "waiterID": waiterID,
+        "managerID": managerID,
+        "paidDateTime": paidDateTime
+        ]
+    }
     
 }

@@ -11,11 +11,13 @@ import Foundation
 struct Table {
     var available: Bool
     var seats: Int
-    var table: String
+    var table_name: String
     
     init(dict: [String: Any]) {
         self.available = dict["available"] as! Bool
         self.seats = dict["seats"] as! Int
-        self.table = dict["table"] as! String
+        self.table_name = dict["table_name"] as! String
     }
+
+    
 }

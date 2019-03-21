@@ -67,7 +67,7 @@ class MenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getMenuForRestaurant(restaurantID: userData.restaurants[0])
+        getMenuForRestaurant(restaurantID: userData!.restaurants[0])
     }
 
     func setupCollectionView() {

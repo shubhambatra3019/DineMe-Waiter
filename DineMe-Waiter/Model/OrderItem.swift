@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct OrderItem: Encodable, Decodable {
+struct OrderItem {
     
     var itemName: String
     var itemQuantity: Int
@@ -22,11 +22,11 @@ struct OrderItem: Encodable, Decodable {
         self.itemNote = itemNote
     }
     
-    /*init(dict: [String: Any]) {
+    init(dict: [String: Any]) {
         self.itemName = dict["name"] as! String
         self.itemQuantity = dict["quantity"] as! Int
         self.itemPrice = dict["unit_price"] as! Double
         self.itemNote = ""
-    }*/
+    }
     
 }
