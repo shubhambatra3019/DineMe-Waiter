@@ -6,9 +6,9 @@
 //  Copyright © 2019 Esper. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct Order {
+struct Order{
     var table: String
     var completed: Bool
     var creationDateTime: Date
@@ -17,6 +17,17 @@ struct Order {
     var waiterID: String
     var managerID: String
     var paidDateTime: Date
+    
+    init(table: String, completed: Bool, creationDateTime: Date = Date(), items: [OrderItem] = [], restaurantID: String, waiterID: String, managerID: String = "abcd", paidDateTime: Date) {
+        self.table = table
+        self.completed = completed
+        self.creationDateTime = creationDateTime
+        self.items = items
+        self.restaurantID = restaurantID
+        self.waiterID = waiterID
+        self.managerID = managerID
+        self.paidDateTime = paidDateTime
+    }
     
     init(dict: [String: Any]) {
         self.table = dict["table"] as! String
@@ -33,8 +44,17 @@ struct Order {
         self.paidDateTime = dict["paidDateTime"] as! Date
     }
     
-    /*var documentData: [String: Any] {
-     
-    }*/
+    var documentData: [String: Any] {
+        return [
+        "table": table,
+        "completed": completed,
+        "creationDateTime": creationDateTime,
+        "items": items,
+        "restaurantID": restaurantID,
+        "waiterID": waiterID,
+        "managerID": managerID,
+        "paidDateTime": paidDateTime
+        ]
+    }
     
 }

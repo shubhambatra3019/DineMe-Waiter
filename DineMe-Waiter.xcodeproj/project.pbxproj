@@ -11,6 +11,8 @@
 		4FB33FBA22415F9000493528 /* WaiterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB33FB922415F9000493528 /* WaiterProfileViewController.swift */; };
 		4FB33FBD2241601C00493528 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB33FBC2241601C00493528 /* Assets.xcassets */; };
 		7F24EE722231BB2E00B5676B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F24EE712231BB2E00B5676B /* User.swift */; };
+		7F336C8722402F8C00247E56 /* Encodable+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F336C8622402F8C00247E56 /* Encodable+Decodable.swift */; };
+		7F336C892240747700247E56 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F336C882240747700247E56 /* Table.swift */; };
 		7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */; };
 		7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */; };
 		7F464EA52224A8E4002C2DB5 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA42224A8E4002C2DB5 /* OrderItem.swift */; };
@@ -63,6 +65,8 @@
 		4FB33FB922415F9000493528 /* WaiterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaiterProfileViewController.swift; sourceTree = "<group>"; };
 		4FB33FBC2241601C00493528 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F24EE712231BB2E00B5676B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7F336C8622402F8C00247E56 /* Encodable+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Decodable.swift"; sourceTree = "<group>"; };
+		7F336C882240747700247E56 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemsViewController.swift; sourceTree = "<group>"; };
 		7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsTableViewCell.swift; sourceTree = "<group>"; };
 		7F464EA42224A8E4002C2DB5 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
@@ -159,6 +163,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		7F336C8522402F7300247E56 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7F336C8622402F8C00247E56 /* Encodable+Decodable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7F6686102204CA3F00639C91 = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +196,7 @@
 		7F66861B2204CA3F00639C91 /* DineMe-Waiter */ = {
 			isa = PBXGroup;
 			children = (
+				7F336C8522402F7300247E56 /* Extensions */,
 				7FE6E258220D1DD90052CD8B /* View */,
 				7FE6E257220D1DD40052CD8B /* Model */,
 				4EE58FA22204D33300918778 /* Controllers */,
@@ -222,6 +235,7 @@
 				7F464EA42224A8E4002C2DB5 /* OrderItem.swift */,
 				7F24EE712231BB2E00B5676B /* User.swift */,
 				7FEC4EAB2237604200F1D027 /* Order.swift */,
+				7F336C882240747700247E56 /* Table.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -401,9 +415,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -421,7 +435,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -438,7 +452,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		68ADE1FF923275359A7A82F4 /* [CP] Copy Pods Resources */ = {
@@ -447,10 +461,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAnonymousAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseEmailAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
@@ -460,9 +474,9 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseEmailAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
@@ -472,7 +486,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F0DCD813E107A3B0AC528AC5 /* [CP] Check Pods Manifest.lock */ = {
@@ -516,12 +530,14 @@
 				7F464EA72224DC33002C2DB5 /* OrderSummaryView.swift in Sources */,
 				7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */,
 				7F89CEEC222F02DD001B7613 /* AddNewTableCollectionViewController.swift in Sources */,
+				7F336C8722402F8C00247E56 /* Encodable+Decodable.swift in Sources */,
 				7F89CEF422303E6F001B7613 /* OrderTableHeaderView.swift in Sources */,
 				7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */,
 				7F95630F2218ADAC00B78A0F /* MenuITem.swift in Sources */,
 				7FEC4EAC2237604200F1D027 /* Order.swift in Sources */,
 				7F89CEEE222F070C001B7613 /* HeaderView.swift in Sources */,
 				7F66861D2204CA3F00639C91 /* AppDelegate.swift in Sources */,
+				7F336C892240747700247E56 /* Table.swift in Sources */,
 				7FE6E25A220D1DF50052CD8B /* OngoingTablesViewController.swift in Sources */,
 				7F9B233A2229CB8B00BE6B94 /* AddNewTableCollectionViewCell.swift in Sources */,
 				7F24EE722231BB2E00B5676B /* User.swift in Sources */,

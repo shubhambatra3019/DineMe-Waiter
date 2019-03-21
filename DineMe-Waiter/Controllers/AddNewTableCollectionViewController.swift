@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class AddNewTableCollectionViewController: UIViewController {
 
@@ -16,7 +17,12 @@ class AddNewTableCollectionViewController: UIViewController {
     
     var people = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     
-    var tables = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]
+    let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
+    
+    var tables = [Table]()
+    
+    var availableTables = [Table]()
+    
     
     let selectPartySizeHeaderView: HeaderView = {
         let view = HeaderView(title: "Select Party Size", frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -75,6 +81,14 @@ class AddNewTableCollectionViewController: UIViewController {
         return button
     }()
     
+    let closeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "close"), for: .normal)
+        button.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -83,14 +97,26 @@ class AddNewTableCollectionViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let restaurantID = userData?.restaurants[0]
+        getTablesFromFirebase(restaurantID: restaurantID!)
+    }
+    
     func setupViews() {
         view.addSubview(selectPartySizeHeaderView)
         view.addSubview(selectPeopleCollectionView)
         view.addSubview(selectTableHeaderView)
         view.addSubview(selectTableCollectionView)
         view.addSubview(addTableButton)
+        view.addSubview(closeButton)
         
-        selectPartySizeHeaderView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        closeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        selectPartySizeHeaderView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 20).isActive = true
         selectPartySizeHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         selectPartySizeHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         selectPartySizeHeaderView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
@@ -117,8 +143,108 @@ class AddNewTableCollectionViewController: UIViewController {
         
     }
     
+    func getTablesFromFirebase(restaurantID: String) {
+        let query = Firestore.firestore().collection("restaurants").document(restaurantID)
+        
+        query.getDocument { (document, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            }
+            
+            if let document = document {
+                let dict = document["Tables"] as! [String: Any]
+                self.getAvailableTables(tablesDict: dict)
+            }
+        }
+    }
+    
+    func getAvailableTables(tablesDict: [String: Any]){
+        
+        for key in Array(tablesDict.keys).sorted() {
+            let table = Table(dict: tablesDict[key] as! [String : Any])
+            self.tables.append(table)
+        }
+        self.availableTables = []
+    
+        for table in tables {
+            if (table.available == true) {
+                self.availableTables.append(table)
+            }
+        }
+        self.selectTableCollectionView.reloadData()
+    }
+    
+    func isTableAvailable(table_name: String, restaurantID: String){
+        let query = Firestore.firestore().collection("restaurants").document(restaurantID)
+        
+        query.getDocument { (document, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            }
+            
+            if let document = document {
+                let dict = document["Tables"] as! [String: Any]
+                
+                if (dict.keys.contains(table_name)) {
+                    let table = Table(dict: dict[table_name] as! [String : Any])
+                    if table.available == true {
+                        self.updateTableFirebase(table_name: table_name, restaurantID: restaurantID)
+                        self.addNewOrder(table_name: table_name)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    else {
+                        
+                        self.getAvailableTables(tablesDict: dict)
+                    }
+                }
+            }
+        
+        }
+    }
+    
+    func updateTableFirebase(table_name: String, restaurantID: String) {
+        let query = Firestore.firestore().collection("restaurants").document(restaurantID)
+        query.updateData([
+            "Tables.\(table_name).available": false
+        ]) { error in
+            if let error = error {
+                print("Error updating document: \(error.localizedDescription)")
+            }
+            else {
+                print("Document Successfuly Updated")
+            }
+        }
+    }
+    
+    func addNewOrder(table_name: String) {
+        let orders = Firestore.firestore().collection("orders")
+        let newOrder = Order(table: table_name, completed: false, restaurantID: (userData?.restaurants[0])!, waiterID: (userData?.userId)!, paidDateTime: Date())
+        orders.addDocument(data: newOrder.documentData) { (error) in
+            if let error = error {
+                print("Error Adding Document \(error.localizedDescription)")
+            }
+            else {
+                print("Document Added Successfully")
+            }
+        }
+    }
+    
     @objc func addTableButtonPressed() {
-        print("add table button pressed")
+        let selected = self.selectTableCollectionView.indexPathsForSelectedItems
+        
+        if selected?.count == 0 {
+            print("Select something ")
+        }
+        else {
+            let selectedTable = selected?.first
+            let table = self.availableTables[selectedTable!.row]
+            isTableAvailable(table_name: table.table_name, restaurantID: (userData?.restaurants[0])!)
+            
+        }
+    }
+    
+    @objc func closeButtonPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
@@ -136,7 +262,7 @@ extension AddNewTableCollectionViewController: UICollectionViewDelegate, UIColle
         }
         
         if collectionView.tag == 1 {
-            return tables.count
+            return availableTables.count
         }
         
         return 0
@@ -151,7 +277,7 @@ extension AddNewTableCollectionViewController: UICollectionViewDelegate, UIColle
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tableCollectionViewCellId, for: indexPath) as! AddNewTableCollectionViewCell
-            cell.numberLabel.text = tables[indexPath.row]
+            cell.numberLabel.text = availableTables[indexPath.row].table_name
             return cell
         }
     }

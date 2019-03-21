@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct User {
+struct User: Encodable, Decodable {
     var name: String
     var email: String
     var restaurants: [String]
     var role: String
-    var shifts: [Any]
+    var shifts: [String]
     var userId: String
     var working: Bool
     
-    init(name: String, email: String, restaurants: [String] = ["2SNsflQCvsGZlblq3T9N"], role: String = "waiter", shifts: [Any] = [], userId: String, working: Bool = false) {
+    init(name: String, email: String, restaurants: [String] = [], role: String = "waiter", shifts: [String] = [], userId: String, working: Bool = false) {
         self.name = name
         self.email = email
         self.restaurants = restaurants
@@ -27,7 +27,7 @@ struct User {
         self.working = working
     }
     
-    init(dict: [String: Any]) {
+    /*init(dict: [String: Any]) {
         self.name = dict["name"] as! String
         self.email = dict["email"] as! String
         self.restaurants = dict["restaurants"] as! [String]
@@ -35,9 +35,9 @@ struct User {
         self.shifts = dict["shifts"] as! [Any]
         self.userId = dict["userId"] as! String
         self.working = dict["working"] as! Bool
-    }
+    }*/
     
-    var documentData: [String: Any] {
+    /*var documentData: [String: Any] {
     return [
     "name": name,
     "email": email,
@@ -47,6 +47,6 @@ struct User {
     "userId": userId,
     "working": working
     ]
-    }
+    }*/
     
 }
