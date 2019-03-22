@@ -94,7 +94,9 @@ class OrderPageViewController: UIViewController {
     }
     
     @objc func checkoutButtonPressed() {
-        print("Button was Pressed")
+        let checkoutPage = CheckoutViewController()
+        checkoutPage.orderID = "1VWTRQ8w50O4hCpNMVY5"
+        self.navigationController?.pushViewController(checkoutPage, animated: true)
     }
     
     

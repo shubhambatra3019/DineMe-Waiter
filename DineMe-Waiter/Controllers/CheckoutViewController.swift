@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
-class TableItemsViewController: UIViewController {
+class CheckoutViewController: UIViewController {
 
     let cellId = "orderItemsCell"
 
     let cellId2 = "summaryCell"
     
-    let data = [OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00)]
+    var orderID: String = ""
+    
+    var tableItemsListener: ListenerRegistration?
+    
+    var orderItems = [OrderItem]()
     
     lazy var itemsTable: UITableView = {
         let tableView = UITableView()
@@ -48,6 +53,37 @@ class TableItemsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getItemsForTableFromFirebase(orderID: orderID)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableItemsListener?.remove()
+        tableItemsListener = nil
+    }
+    
+    func getItemsForTableFromFirebase(orderID: String) {
+        let query = Firestore.firestore().collection("orders").document(orderID)
+        
+        tableItemsListener = query.addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                print("Error while fetching items \(error.localizedDescription)")
+            }
+            guard let snapshot = snapshot else { return }
+            var updatedItems = [OrderItem]()
+            var document = snapshot.data()
+            var items = document!["items"] as! [[String: Any]]
+            
+            for item in items {
+                let orderItem = OrderItem(dict: item)
+                updatedItems.append(orderItem)
+            }
+            self.orderItems = updatedItems
+            self.itemsTable.reloadData()
+        })
+    }
     
     func setupViews() {
         
@@ -72,14 +108,14 @@ class TableItemsViewController: UIViewController {
     
 }
 
-extension TableItemsViewController: UITableViewDelegate, UITableViewDataSource {
+extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (data.count+1)
+        return (orderItems.count+1)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == data.count {
+        if indexPath.row == orderItems.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId2, for: indexPath) as! OrderedItemsSummaryTableViewCell
             cell.summaryView.subtotalView.valueLabel.text = "$40.00"
             cell.summaryView.taxView.valueLabel.text = "$4.00"
@@ -90,9 +126,9 @@ extension TableItemsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OrderItemsTableViewCell
-            cell.itemNameLabel.text  = data[indexPath.row].itemName
-            cell.quantityLabel.text = String(data[indexPath.row].itemQuantity)
-            cell.priceLabel.text = String(format: "%.2f", data[indexPath.row].itemPrice)
+            cell.itemNameLabel.text  = orderItems[indexPath.row].itemName
+            cell.quantityLabel.text = String(orderItems[indexPath.row].itemQuantity)
+            cell.priceLabel.text = String(format: "%.2f", orderItems[indexPath.row].itemPrice)
             return cell
         }
         
