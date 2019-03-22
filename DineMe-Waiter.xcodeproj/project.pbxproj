@@ -13,7 +13,7 @@
 		7F24EE722231BB2E00B5676B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F24EE712231BB2E00B5676B /* User.swift */; };
 		7F336C8722402F8C00247E56 /* Encodable+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F336C8622402F8C00247E56 /* Encodable+Decodable.swift */; };
 		7F336C892240747700247E56 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F336C882240747700247E56 /* Table.swift */; };
-		7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */; };
+		7F464E9F22246F71002C2DB5 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464E9E22246F71002C2DB5 /* CheckoutViewController.swift */; };
 		7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */; };
 		7F464EA52224A8E4002C2DB5 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA42224A8E4002C2DB5 /* OrderItem.swift */; };
 		7F464EA72224DC33002C2DB5 /* OrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F464EA62224DC33002C2DB5 /* OrderSummaryView.swift */; };
@@ -67,7 +67,7 @@
 		7F24EE712231BB2E00B5676B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7F336C8622402F8C00247E56 /* Encodable+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Decodable.swift"; sourceTree = "<group>"; };
 		7F336C882240747700247E56 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
-		7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemsViewController.swift; sourceTree = "<group>"; };
+		7F464E9E22246F71002C2DB5 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsTableViewCell.swift; sourceTree = "<group>"; };
 		7F464EA42224A8E4002C2DB5 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		7F464EA62224DC33002C2DB5 /* OrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryView.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 				7F66861E2204CA3F00639C91 /* LoginViewController.swift */,
 				7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */,
 				7FE6E25F220D2AB60052CD8B /* MenuViewController.swift */,
-				7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */,
+				7F464E9E22246F71002C2DB5 /* CheckoutViewController.swift */,
 				7F9B23352229A25400BE6B94 /* AddMenuItemViewController.swift */,
 				7F89CEEB222F02DD001B7613 /* AddNewTableCollectionViewController.swift */,
 				7F89CEEF222F2DE7001B7613 /* OrderPageViewController.swift */,
@@ -519,7 +519,7 @@
 				7F9B23322227518C00BE6B94 /* QuantityChangeView.swift in Sources */,
 				4FB33FBA22415F9000493528 /* WaiterProfileViewController.swift in Sources */,
 				7F95630D22189D8800B78A0F /* MenuItemsTableViewCell.swift in Sources */,
-				7F464E9F22246F71002C2DB5 /* TableItemsViewController.swift in Sources */,
+				7F464E9F22246F71002C2DB5 /* CheckoutViewController.swift in Sources */,
 				7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */,
 				7F9B23362229A25400BE6B94 /* AddMenuItemViewController.swift in Sources */,
 				7F89CEF2222F2EC3001B7613 /* OrderPageTableViewCell.swift in Sources */,

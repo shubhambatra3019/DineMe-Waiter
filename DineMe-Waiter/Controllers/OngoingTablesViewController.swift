@@ -76,7 +76,7 @@ class OngoingTablesViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+        super.viewWillDisappear(animated)
         ongoingTablesListener?.remove()
         ongoingTablesListener = nil
     }
