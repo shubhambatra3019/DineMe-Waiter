@@ -74,7 +74,7 @@ class CheckoutViewController: UIViewController {
             guard let snapshot = snapshot else { return }
             var updatedItems = [OrderItem]()
             var document = snapshot.data()
-            var items = document!["items"] as! [[String: Any]]
+            let items = document!["items"] as! [[String: Any]]
             
             for item in items {
                 let orderItem = OrderItem(dict: item)
@@ -106,6 +106,15 @@ class CheckoutViewController: UIViewController {
         print("Button was Pressed")
     }
     
+    func calcualteSubtotal(orderItems: [OrderItem]) -> Double {
+        var subtotal = 0.0
+        for item in orderItems {
+            var price = Double(item.itemQuantity) * item.itemPrice
+            subtotal += price
+        }
+        return subtotal
+    }
+    
 }
 
 extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
@@ -117,10 +126,14 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == orderItems.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId2, for: indexPath) as! OrderedItemsSummaryTableViewCell
-            cell.summaryView.subtotalView.valueLabel.text = "$40.00"
-            cell.summaryView.taxView.valueLabel.text = "$4.00"
-            cell.summaryView.tipView.valueLabel.text = "$5.00"
-            cell.summaryView.totalView.valueLabel.text = "$50.00"
+            let subtotal = calcualteSubtotal(orderItems: self.orderItems)
+            let tip = 4.00
+            let tax = 5.00
+            
+            cell.summaryView.subtotalView.valueLabel.text = String(format: "%.2f", subtotal)
+            cell.summaryView.taxView.valueLabel.text = String(tax)
+            cell.summaryView.tipView.valueLabel.text = String(tip)
+            cell.summaryView.totalView.valueLabel.text = String(subtotal + tax + tip)
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         }
@@ -128,7 +141,7 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OrderItemsTableViewCell
             cell.itemNameLabel.text  = orderItems[indexPath.row].itemName
             cell.quantityLabel.text = String(orderItems[indexPath.row].itemQuantity)
-            cell.priceLabel.text = String(format: "%.2f", orderItems[indexPath.row].itemPrice)
+            cell.priceLabel.text = String(format: "%.2f", (Double(orderItems[indexPath.row].itemQuantity) * orderItems[indexPath.row].itemPrice))
             return cell
         }
         
