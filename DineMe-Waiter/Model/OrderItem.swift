@@ -29,4 +29,13 @@ struct OrderItem {
         self.itemNote = ""
     }
     
+    var documentData: [String: Any] {
+        return [
+        "name": itemName,
+        "quantity": itemQuantity,
+        "unit_price": itemPrice,
+        "note": itemNote
+        ]
+    }
+    
 }
