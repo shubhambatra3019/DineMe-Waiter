@@ -42,10 +42,11 @@ class OngoingTablesViewController: UIViewController {
         view.addSubview(ongoingTableView)
         view.addSubview(logoutButton)
         
+        ongoingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         ongoingTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         ongoingTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        ongoingTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        ongoingTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        ongoingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         
         logoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
         logoutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 60).isActive = true

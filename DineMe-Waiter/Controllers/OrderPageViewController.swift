@@ -71,20 +71,21 @@ class OrderPageViewController: UIViewController {
         view.addSubview(addItemButton)
         view.addSubview(checkoutButton)
         
-        orderTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        orderTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        orderTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        orderTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        orderTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        orderTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        orderTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        orderTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
+        addItemButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         addItemButton.bottomAnchor.constraint(equalTo: checkoutButton.topAnchor, constant: -40).isActive = true
-        addItemButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5).isActive = true
         addItemButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         addItemButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        checkoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        checkoutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        checkoutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        checkoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        checkoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        checkoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         checkoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
      }
     
     @objc func menuButtonPressed() {

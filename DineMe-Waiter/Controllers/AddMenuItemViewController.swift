@@ -96,18 +96,18 @@ class AddMenuItemViewController: UIViewController {
         view.addSubview(noteTextView)
         view.addSubview(addItemButton)
         
-        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
-        closeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         itemView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 20).isActive = true
-        itemView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        itemView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        itemNameLabel.leftAnchor.constraint(equalTo: itemView.leftAnchor, constant: 30).isActive = true
         itemNameLabel.topAnchor.constraint(equalTo: itemView.topAnchor, constant: 40).isActive = true
-        itemNameLabel.rightAnchor.constraint(equalTo: itemView.rightAnchor).isActive = true
+        itemNameLabel.leadingAnchor.constraint(equalTo: itemView.leadingAnchor, constant: 30).isActive = true
+        itemNameLabel.trailingAnchor.constraint(equalTo: itemView.trailingAnchor).isActive = true
         itemNameLabel.bottomAnchor.constraint(equalTo: itemView.bottomAnchor, constant: -40).isActive = true
         
         quantityView.topAnchor.constraint(equalTo: itemView.bottomAnchor, constant: 40).isActive = true
@@ -116,13 +116,13 @@ class AddMenuItemViewController: UIViewController {
         quantityView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         noteTextView.topAnchor.constraint(equalTo: quantityView.bottomAnchor, constant: 40).isActive =  true
-        noteTextView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        noteTextView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        noteTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        noteTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         noteTextView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        addItemButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        addItemButton.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        addItemButton.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        addItemButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        addItemButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        addItemButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         addItemButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
