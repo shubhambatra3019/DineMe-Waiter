@@ -90,14 +90,14 @@ class CheckoutViewController: UIViewController {
         view.addSubview(itemsTable)
         view.addSubview(checkoutButton)
         
-        itemsTable.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        itemsTable.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        itemsTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        itemsTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        itemsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        itemsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         itemsTable.bottomAnchor.constraint(equalTo: checkoutButton.topAnchor).isActive = true
         
-        checkoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        checkoutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        checkoutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        checkoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        checkoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         checkoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
     }

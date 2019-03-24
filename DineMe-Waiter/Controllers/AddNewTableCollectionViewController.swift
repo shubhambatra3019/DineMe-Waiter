@@ -111,34 +111,34 @@ class AddNewTableCollectionViewController: UIViewController {
         view.addSubview(addTableButton)
         view.addSubview(closeButton)
         
-        closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
-        closeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         selectPartySizeHeaderView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 20).isActive = true
-        selectPartySizeHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        selectPartySizeHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        selectPartySizeHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        selectPartySizeHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         selectPartySizeHeaderView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
         selectPeopleCollectionView.topAnchor.constraint(equalTo: selectPartySizeHeaderView.bottomAnchor, constant: 10).isActive = true
-        selectPeopleCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        selectPeopleCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        selectPeopleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        selectPeopleCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         selectPeopleCollectionView.heightAnchor.constraint(equalToConstant: 110.0).isActive = true
         
         selectTableHeaderView.topAnchor.constraint(equalTo: selectPeopleCollectionView.bottomAnchor, constant: 10).isActive = true
-        selectTableHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        selectTableHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        selectTableHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        selectTableHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         selectTableHeaderView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
         selectTableCollectionView.topAnchor.constraint(equalTo: selectTableHeaderView.bottomAnchor, constant: 10).isActive = true
-        selectTableCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        selectTableCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        selectTableCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        selectTableCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         selectTableCollectionView.bottomAnchor.constraint(equalTo: addTableButton.topAnchor).isActive = true
         
+        addTableButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        addTableButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         addTableButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        addTableButton.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        addTableButton.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         addTableButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
     }

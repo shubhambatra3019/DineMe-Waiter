@@ -30,8 +30,11 @@ class MenuViewController: UIViewController {
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: 100), collectionViewLayout: layout)
         collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: collectionViewCellId)
         collectionView.backgroundColor = UIColor.blue
+        //collectionView.allowsMultipleSelection = false
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         return collectionView
     }()
     
@@ -41,26 +44,32 @@ class MenuViewController: UIViewController {
         tableView.frame = CGRect(x: 0, y: myCollectionView.frame.height, width: UIScreen.main.bounds.width, height: 400)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(MenuItemsTableViewCell.self, forCellReuseIdentifier: tableViewCellId)
-        
         tableView.estimatedRowHeight = 100.0
+        tableView.delegate = self
+        tableView.dataSource = self
         return tableView
     }()
     
-    func setupTableView() {
+    func setupViews() {
         view.addSubview(menuTableView)
+        view.addSubview(myCollectionView)
+        
+        self.myCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.myCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.myCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        self.myCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        menuTableView.topAnchor.constraint(equalTo: self.myCollectionView.bottomAnchor).isActive = true
         menuTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         menuTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        menuTableView.topAnchor.constraint(equalTo: self.myCollectionView.bottomAnchor).isActive = true
-        menuTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        menuTableView.delegate = self
-        menuTableView.dataSource = self
+        menuTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(myCollectionView)
-        setupCollectionView()
-        setupTableView()
+    
+        setupViews()
         // Do any additional setup after loading the view.
     }
     
@@ -70,13 +79,6 @@ class MenuViewController: UIViewController {
         getMenuForRestaurant(restaurantID: userData!.restaurants[0])
     }
 
-    func setupCollectionView() {
-        self.myCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.myCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
-        self.myCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        self.myCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.myCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-    }
     
     func getMenuForRestaurant(restaurantID: String) {
         let restaurantDocument = Firestore.firestore().collection("restaurants").document(restaurantID)
@@ -165,5 +167,17 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
-
+    /*
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let visibleCells = self.menuTableView.indexPathsForVisibleRows {
+            if let currentSection = visibleCells.first?.section {
+                let indexPath = IndexPath(row: currentSection, section: 0)
+                let collectionViewCell = self.myCollectionView.cellForItem(at: indexPath)
+               
+                collectionViewCell?.isSelected = true
+                
+            }
+        }
+        
+    }*/
 }
