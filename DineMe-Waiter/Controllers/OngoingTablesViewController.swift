@@ -107,7 +107,7 @@ class OngoingTablesViewController: UIViewController {
             self.ongoingTables = []
             for document in snapshot.documents {
                 print(document.data())
-                let order = Order(dict: document.data())
+                let order = Order(dict: document.data(), orderID: document.documentID)
                 print("json converted")
                 self.ongoingTables.append(order)
             }
@@ -134,8 +134,9 @@ extension OngoingTablesViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let order = self.ongoingTables[indexPath.row]
         let orderVC = OrderPageViewController()
+        orderVC.orderID = order.orderID
         self.navigationController?.pushViewController(orderVC, animated: true)
         
     }

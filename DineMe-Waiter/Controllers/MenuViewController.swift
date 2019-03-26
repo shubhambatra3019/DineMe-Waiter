@@ -20,6 +20,8 @@ class MenuViewController: UIViewController {
     
     let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
+    var orderID: String!
+    
     lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 50)
@@ -89,7 +91,6 @@ class MenuViewController: UIViewController {
             }
             else {
                 if let document = documentSnapshot {
-                    print(document.data())
                     let menu = document["menu"] as! [String : Any]
                     self.categories = Array(menu.keys)
                     for category in self.categories {
@@ -124,8 +125,6 @@ extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let ix = IndexPath(row: 0, section: indexPath.row)
         menuTableView.scrollToRow(at: ix, at: .top, animated: true)
         let cell = collectionView.cellForItem(at: indexPath)
-        print(indexPath.row)
-        print(indexPath.section)
         cell?.isSelected = true
     }
     
@@ -149,6 +148,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let addMenuItemVC = AddMenuItemViewController()
         addMenuItemVC.menuItem = items[indexPath.section][indexPath.row]
+        addMenuItemVC.orderID = self.orderID
         self.navigationController?.present(addMenuItemVC, animated: true, completion: nil)
     }
     
