@@ -69,7 +69,7 @@ class AddMenuItemViewController: UIViewController {
         }
     }
     
-    var orderID: String = "1VWTRQ8w50O4hCpNMVY5"
+    var orderID: String = "DfuwfBvopfGJTtSl4jw1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +80,7 @@ class AddMenuItemViewController: UIViewController {
     }
     
     @objc func addButtonPressed() {
-         let itemToAdd = OrderItem(itemName: menuItem.name!, itemQuantity: Int(quantityView.quantityLabel.text!)!, itemPrice: menuItem.price!)
+        let itemToAdd = OrderItem(itemName: menuItem.name!, itemQuantity: Int(quantityView.quantityLabel.text!)!, itemPrice: menuItem.price!, status: 0)
         addItemToFirebase(orderID: orderID, orderItem: itemToAdd)
     }
     
