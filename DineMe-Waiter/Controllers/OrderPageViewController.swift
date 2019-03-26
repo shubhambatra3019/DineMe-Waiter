@@ -19,13 +19,11 @@ class OrderPageViewController: UIViewController {
     
     var orderListener: ListenerRegistration?
     
-    var items = [OrderItem]()
-    
     var queued = [OrderItem]()
     var ongoing = [OrderItem]()
     var done = [OrderItem]()
     
-    let orderID: String = "AqBZ1Hxo5J6u9e1tb5gt"
+    var orderID: String!
     
     lazy var orderTableView: UITableView = {
         let tableView = UITableView()
@@ -133,25 +131,29 @@ class OrderPageViewController: UIViewController {
             
             guard let document = snapshot.data() else { return }
             print("Making a call to firebase!!!!!!!!!!!!!!!!!!")
-            let updatedOrder = Order(dict: document)
-            self.items = updatedOrder.items
-            self.classifyItemsByStatus(items: self.items)
+            let updatedOrder = Order(dict: document, orderID: snapshot.documentID)
+            
+            let orderItems = updatedOrder.items
+            
+            self.classifyItemsByStatus(items: orderItems)
+            
             print(self.queued.count)
             print(self.ongoing.count)
             print(self.done.count)
+            
             self.orderTableView.reloadData()
         })
     }
     
     @objc func menuButtonPressed() {
         let menuVC = MenuViewController()
+        menuVC.orderID = self.orderID
         self.navigationController?.pushViewController(menuVC, animated: true)
-        print("Menu Button was Pressed")
     }
     
     @objc func checkoutButtonPressed() {
         let checkoutPage = CheckoutViewController()
-        checkoutPage.orderID = "DfuwfBvopfGJTtSl4jw1"
+        checkoutPage.orderID = self.orderID
         self.navigationController?.pushViewController(checkoutPage, animated: true)
     }
     
@@ -171,18 +173,31 @@ class OrderPageViewController: UIViewController {
     }
     
     @objc func moveToOngoingButtonTapped() {
-        let temp = queued
-        queued.removeAll()
-        ongoing.insert(contentsOf: temp, at: 0)
-        print(ongoing)
-        orderTableView.reloadData()
+        
+        var updatedOrderItems = [OrderItem]()
+        
+        for item in self.queued {
+            let newItem = OrderItem(itemName: item.itemName, itemQuantity: item.itemQuantity, itemPrice: item.itemPrice, itemNote: "", status: 1)
+            updatedOrderItems.append(newItem)
+        }
+        
+        let orderItems = updatedOrderItems + self.ongoing + self.done
+        
+        updateFirebaseItems(items: orderItems, orderID: orderID)
+        
     }
     
     @objc func moveToDoneButtonTapped() {
-        let temp = ongoing
-        ongoing.removeAll()
-        done.insert(contentsOf: temp, at: 0)
-        orderTableView.reloadData()
+        var updatedOrderItems = [OrderItem]()
+        
+        for item in self.ongoing {
+            let newItem = OrderItem(itemName: item.itemName, itemQuantity: item.itemQuantity, itemPrice: item.itemPrice, itemNote: "", status: 2)
+            updatedOrderItems.append(newItem)
+        }
+        
+        let orderItems = self.queued + updatedOrderItems + self.done
+        
+        updateFirebaseItems(items: orderItems, orderID: orderID)
     }
 
     func moveItemToOngoing(indexPath: IndexPath) {
@@ -228,6 +243,7 @@ extension OrderPageViewController: UITableViewDelegate, UITableViewDataSource {
             header.titleLabel.text = sections[section]
             header.moveItemsButton.setTitle("Move All to Ongoing", for: .normal)
             header.moveItemsButton.addTarget(self, action: #selector(moveToOngoingButtonTapped), for: .touchUpInside)
+            header.moveItemsButton.isHidden = false
         }
         if section == 1 {
             header.titleLabel.text = sections[section]

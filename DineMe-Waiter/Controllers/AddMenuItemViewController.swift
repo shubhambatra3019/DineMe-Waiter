@@ -69,7 +69,7 @@ class AddMenuItemViewController: UIViewController {
         }
     }
     
-    var orderID: String = "DfuwfBvopfGJTtSl4jw1"
+    var orderID: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
