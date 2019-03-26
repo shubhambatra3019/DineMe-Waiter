@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class OrderPageViewController: UIViewController {
 
@@ -16,11 +17,15 @@ class OrderPageViewController: UIViewController {
     
     var sections = ["Queued", "Ongoing", "Done"]
     
-    var queued:[OrderItem] = [OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "AbCD", itemQuantity: 3, itemPrice: 14.00), OrderItem(itemName: "EFGH", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "IJKL", itemQuantity: 5, itemPrice: 14.00), OrderItem(itemName: "MNOP", itemQuantity: 6, itemPrice: 14.00)]
+    var orderListener: ListenerRegistration?
     
-    var ongoing = [OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00)]
+    var items = [OrderItem]()
     
-    var done = [OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00),OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "Naan", itemQuantity: 4, itemPrice: 14.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00), OrderItem(itemName: "ButterChicken", itemQuantity: 2, itemPrice: 20.00)]
+    var queued = [OrderItem]()
+    var ongoing = [OrderItem]()
+    var done = [OrderItem]()
+    
+    let orderID: String = "AqBZ1Hxo5J6u9e1tb5gt"
     
     lazy var orderTableView: UITableView = {
         let tableView = UITableView()
@@ -62,8 +67,17 @@ class OrderPageViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         // Do any additional setup after loading the view.
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startListeningForOrder(orderID: orderID)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        orderListener?.remove()
+        orderListener = nil
     }
     
     func setupViews() {
@@ -88,6 +102,47 @@ class OrderPageViewController: UIViewController {
         
      }
     
+    func classifyItemsByStatus(items: [OrderItem]) {
+        self.queued = []
+        self.ongoing = []
+        self.done = []
+        for item in items {
+            if item.status == 0 {
+                self.queued.append(item)
+            }
+            else if item.status == 1 {
+                self.ongoing.append(item)
+            }
+            else if item.status == 2{
+                self.done.append(item)
+            }
+            else {
+                print("Wrong Status. Something went wrong")
+            }
+        }
+    }
+    
+    func startListeningForOrder(orderID: String) {
+        let query = Firestore.firestore().collection("orders").document(orderID)
+        
+        orderListener = query.addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                print("Error while fetching items \(error.localizedDescription)")
+            }
+            guard let snapshot = snapshot else { return }
+            
+            guard let document = snapshot.data() else { return }
+            print("Making a call to firebase!!!!!!!!!!!!!!!!!!")
+            let updatedOrder = Order(dict: document)
+            self.items = updatedOrder.items
+            self.classifyItemsByStatus(items: self.items)
+            print(self.queued.count)
+            print(self.ongoing.count)
+            print(self.done.count)
+            self.orderTableView.reloadData()
+        })
+    }
+    
     @objc func menuButtonPressed() {
         let menuVC = MenuViewController()
         self.navigationController?.pushViewController(menuVC, animated: true)
@@ -96,10 +151,24 @@ class OrderPageViewController: UIViewController {
     
     @objc func checkoutButtonPressed() {
         let checkoutPage = CheckoutViewController()
-        checkoutPage.orderID = "1VWTRQ8w50O4hCpNMVY5"
+        checkoutPage.orderID = "DfuwfBvopfGJTtSl4jw1"
         self.navigationController?.pushViewController(checkoutPage, animated: true)
     }
     
+    func updateFirebaseItems(items: [OrderItem], orderID: String) {
+        
+        let query = Firestore.firestore().collection("orders").document(orderID)
+        let dictArrayItems = items.map { $0.documentData }
+        
+        query.updateData(["items": dictArrayItems]) { (error) in
+            if let error = error {
+                print("Error while update \(error.localizedDescription)")
+            }
+            else {
+                print("Items updated successfully")
+            }
+        }
+    }
     
     @objc func moveToOngoingButtonTapped() {
         let temp = queued
@@ -117,19 +186,28 @@ class OrderPageViewController: UIViewController {
     }
 
     func moveItemToOngoing(indexPath: IndexPath) {
-        let item = queued.remove(at: indexPath.row)
-        print(item.itemName)
+        print(indexPath.row)
+        print("Queued: \(self.queued)")
+        let oldItem = queued.remove(at: indexPath.row)
         
-        ongoing.insert(item, at: 0)
-        orderTableView.reloadData()
+        let newItem = OrderItem(itemName: oldItem.itemName, itemQuantity: oldItem.itemQuantity, itemPrice: oldItem.itemPrice, itemNote: "", status: 1)
+        
+        let items = self.queued + [newItem] + self.ongoing + self.done
+        
+        updateFirebaseItems(items: items, orderID: orderID)
+        
     }
     
     func moveItemToDone(indexPath: IndexPath) {
-        let item = ongoing.remove(at: indexPath.row)
-        print(item.itemName)
         
-        done.insert(item, at: 0)
-        orderTableView.reloadData()
+        let oldItem = ongoing.remove(at: indexPath.row)
+        
+        let newItem = OrderItem(itemName: oldItem.itemName, itemQuantity: oldItem.itemQuantity, itemPrice: oldItem.itemPrice, itemNote: "", status: 2)
+        
+        
+        let items = self.queued + self.ongoing + [newItem] + self.done
+        
+        updateFirebaseItems(items: items, orderID: orderID)
     }
     
 }

@@ -14,12 +14,14 @@ struct OrderItem {
     var itemQuantity: Int
     var itemPrice: Double
     var itemNote: String
+    var status: Int
     
-    init(itemName: String, itemQuantity: Int, itemPrice: Double, itemNote: String = "") {
+    init(itemName: String, itemQuantity: Int, itemPrice: Double, itemNote: String = "", status: Int = 0) {
         self.itemName = itemName
         self.itemQuantity = itemQuantity
         self.itemPrice = itemPrice
         self.itemNote = itemNote
+        self.status = status
     }
     
     init(dict: [String: Any]) {
@@ -27,6 +29,7 @@ struct OrderItem {
         self.itemQuantity = dict["quantity"] as! Int
         self.itemPrice = dict["unit_price"] as! Double
         self.itemNote = ""
+        self.status = dict["status"] as! Int
     }
     
     var documentData: [String: Any] {
@@ -34,7 +37,8 @@ struct OrderItem {
         "name": itemName,
         "quantity": itemQuantity,
         "unit_price": itemPrice,
-        "note": itemNote
+        "note": itemNote,
+        "status": status
         ]
     }
     
