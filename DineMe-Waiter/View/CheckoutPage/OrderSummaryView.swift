@@ -36,23 +36,6 @@ class OrderSummaryView: UIView {
         return stackView
     }()
     
-    /*let totalLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Total"
-        label.font = UIFont(name: "Helvetica", size: 26)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    var totalValue: UILabel = {
-       let label = UILabel()
-        label.text = "$50.00"
-        label.font = UIFont(name: "Helvetica", size: 26)
-        label.textColor = UIColor.green
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    */
     var subtotalView = CustomizedView(title: "Subtotal", value: "$40.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
 
     var taxView = CustomizedView(title: "Tax", value: "$0.00", frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -68,10 +51,7 @@ class OrderSummaryView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        /*subtotalView.valueLabel.text = subTotal
-        taxView.valueLabel.text = tax
-        tipView.valueLabel.text = tip
-        totalValue.text = total*/
+
         setupViews()
     }
     

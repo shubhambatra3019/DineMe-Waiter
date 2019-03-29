@@ -22,7 +22,6 @@ class QuantityChangeView: UIView {
     
     let decreaseQuantityButton: UIButton = {
        let button = UIButton()
-        //button.setImage(UIImage(named: "decreaseButton"), for: .normal)
         button.setTitle("-", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 30.0)
@@ -34,7 +33,6 @@ class QuantityChangeView: UIView {
     
     let increaseQuantityButton: UIButton = {
         let button = UIButton()
-        ///button.setImage(UIImage(named: "incrementButton"), for: .normal)
         button.setTitle("+", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.orange

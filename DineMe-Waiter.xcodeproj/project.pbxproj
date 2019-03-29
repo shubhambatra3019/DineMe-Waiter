@@ -228,6 +228,60 @@
 			path = "DineMe-WaiterUITests";
 			sourceTree = "<group>";
 		};
+		7FBD249F224E9E26006D78DC /* OngoingTabelsPage */ = {
+			isa = PBXGroup;
+			children = (
+				7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */,
+			);
+			path = OngoingTabelsPage;
+			sourceTree = "<group>";
+		};
+		7FBD24A0224E9E48006D78DC /* MenuPage */ = {
+			isa = PBXGroup;
+			children = (
+				7F6D08B8220DBC5F00048577 /* MenuCollectionViewCell.swift */,
+				7F95630C22189D8800B78A0F /* MenuItemsTableViewCell.swift */,
+			);
+			path = MenuPage;
+			sourceTree = "<group>";
+		};
+		7FBD24A1224E9EE7006D78DC /* OrderPage */ = {
+			isa = PBXGroup;
+			children = (
+				7F89CEF322303E6F001B7613 /* OrderTableHeaderView.swift */,
+				7F89CEF1222F2EC3001B7613 /* OrderPageTableViewCell.swift */,
+			);
+			path = OrderPage;
+			sourceTree = "<group>";
+		};
+		7FBD24A2224E9EF9006D78DC /* AddNewTablePage */ = {
+			isa = PBXGroup;
+			children = (
+				7F9B23392229CB8B00BE6B94 /* AddNewTableCollectionViewCell.swift */,
+				7F89CEED222F070C001B7613 /* HeaderView.swift */,
+			);
+			path = AddNewTablePage;
+			sourceTree = "<group>";
+		};
+		7FBD24A3224E9F0B006D78DC /* CheckoutPage */ = {
+			isa = PBXGroup;
+			children = (
+				7F464EA62224DC33002C2DB5 /* OrderSummaryView.swift */,
+				7F464EAA2224EF30002C2DB5 /* CustomizedView.swift */,
+				7F464EAE2226EAB3002C2DB5 /* OrderedItemsSummaryTableViewCell.swift */,
+				7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */,
+			);
+			path = CheckoutPage;
+			sourceTree = "<group>";
+		};
+		7FBD24A4224E9F8D006D78DC /* AddMenuItemPage */ = {
+			isa = PBXGroup;
+			children = (
+				7F9B23312227518C00BE6B94 /* QuantityChangeView.swift */,
+			);
+			path = AddMenuItemPage;
+			sourceTree = "<group>";
+		};
 		7FE6E257220D1DD40052CD8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,18 +297,12 @@
 		7FE6E258220D1DD90052CD8B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */,
-				7F6D08B8220DBC5F00048577 /* MenuCollectionViewCell.swift */,
-				7F95630C22189D8800B78A0F /* MenuItemsTableViewCell.swift */,
-				7F464EA022247AD6002C2DB5 /* OrderItemsTableViewCell.swift */,
-				7F464EA62224DC33002C2DB5 /* OrderSummaryView.swift */,
-				7F464EAA2224EF30002C2DB5 /* CustomizedView.swift */,
-				7F464EAE2226EAB3002C2DB5 /* OrderedItemsSummaryTableViewCell.swift */,
-				7F9B23312227518C00BE6B94 /* QuantityChangeView.swift */,
-				7F9B23392229CB8B00BE6B94 /* AddNewTableCollectionViewCell.swift */,
-				7F89CEED222F070C001B7613 /* HeaderView.swift */,
-				7F89CEF1222F2EC3001B7613 /* OrderPageTableViewCell.swift */,
-				7F89CEF322303E6F001B7613 /* OrderTableHeaderView.swift */,
+				7FBD24A4224E9F8D006D78DC /* AddMenuItemPage */,
+				7FBD24A3224E9F0B006D78DC /* CheckoutPage */,
+				7FBD24A2224E9EF9006D78DC /* AddNewTablePage */,
+				7FBD24A1224E9EE7006D78DC /* OrderPage */,
+				7FBD24A0224E9E48006D78DC /* MenuPage */,
+				7FBD249F224E9E26006D78DC /* OngoingTabelsPage */,
 			);
 			path = View;
 			sourceTree = "<group>";
