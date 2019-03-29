@@ -18,8 +18,9 @@ struct Order{
     var managerID: String
     var paidDateTime: Date
     var orderID: String
+    var partySize: Int
     
-    init(table: String, completed: Bool, creationDateTime: Date = Date(), items: [OrderItem] = [], restaurantID: String, waiterID: String, managerID: String = "abcd", paidDateTime: Date, orderID: String = "") {
+    init(table: String, completed: Bool, creationDateTime: Date = Date(), items: [OrderItem] = [], restaurantID: String, waiterID: String, managerID: String = "abcd", paidDateTime: Date, orderID: String, partySize: Int) {
         self.table = table
         self.completed = completed
         self.creationDateTime = creationDateTime
@@ -29,9 +30,10 @@ struct Order{
         self.managerID = managerID
         self.paidDateTime = paidDateTime
         self.orderID = orderID
+        self.partySize = partySize
     }
     
-    init(dict: [String: Any], orderID: String) {
+    init(dict: [String: Any]) {
         self.table = dict["table"] as! String
         self.completed = dict["completed"] as! Bool
         self.creationDateTime = dict["creationDateTime"] as! Date
@@ -44,7 +46,8 @@ struct Order{
         self.waiterID = dict["waiterID"] as! String
         self.managerID = dict["managerID"] as! String
         self.paidDateTime = dict["paidDateTime"] as! Date
-        self.orderID = orderID
+        self.orderID = dict["orderID"] as! String
+        self.partySize = dict["partySize"] as! Int
     }
     
     var documentData: [String: Any] {
@@ -56,7 +59,9 @@ struct Order{
         "restaurantID": restaurantID,
         "waiterID": waiterID,
         "managerID": managerID,
-        "paidDateTime": paidDateTime
+        "paidDateTime": paidDateTime,
+        "orderID" : orderID,
+        "partySize": partySize
         ]
     }
     

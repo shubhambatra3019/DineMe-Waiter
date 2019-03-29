@@ -12,17 +12,18 @@ class HeaderView: UIView {
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Select Size"
-        label.font = UIFont(name: "Helvetica-Bold", size: 24.0)
-        label.textAlignment = .center
+        label.attributedText = NSAttributedString(string: "Select Party Size", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
+        label.font = UIFont(name: "Helvetica-Bold", size: 36.0)
+        label.textAlignment = .left
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
+       
         return label
     }()
 
     init(title: String, frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.lightGray
+        self.backgroundColor = UIColor.lightText
         setupViews()
         titleLabel.text = title
     }
@@ -34,7 +35,7 @@ class HeaderView: UIView {
     func setupViews() {
         addSubview(titleLabel)
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
