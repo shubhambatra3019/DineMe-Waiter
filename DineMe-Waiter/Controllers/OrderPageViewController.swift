@@ -25,6 +25,8 @@ class OrderPageViewController: UIViewController {
     
     var orderID: String!
     
+    var table: String!
+    
     lazy var orderTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(OrderPageTableViewCell.self, forCellReuseIdentifier: orderCellId)
@@ -64,11 +66,15 @@ class OrderPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        
+        navigationItem.title = "Table 1"
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        //navigationController?.navigationBar.prefersLargeTitles = true
         startListeningForOrder(orderID: orderID)
     }
     
@@ -131,7 +137,7 @@ class OrderPageViewController: UIViewController {
             
             guard let document = snapshot.data() else { return }
             print("Making a call to firebase!!!!!!!!!!!!!!!!!!")
-            let updatedOrder = Order(dict: document, orderID: snapshot.documentID)
+            let updatedOrder = Order(dict: document)
             
             let orderItems = updatedOrder.items
             
@@ -153,6 +159,7 @@ class OrderPageViewController: UIViewController {
     
     @objc func checkoutButtonPressed() {
         let checkoutPage = CheckoutViewController()
+        checkoutPage.table = self.table
         checkoutPage.orderID = self.orderID
         self.navigationController?.pushViewController(checkoutPage, animated: true)
     }

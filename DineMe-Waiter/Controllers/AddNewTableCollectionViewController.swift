@@ -110,15 +110,15 @@ class AddNewTableCollectionViewController: UIViewController {
         view.addSubview(addTableButton)
         view.addSubview(closeButton)
         
-        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
+        closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        selectPartySizeHeaderView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 20).isActive = true
+        selectPartySizeHeaderView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 5).isActive = true
         selectPartySizeHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         selectPartySizeHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        selectPartySizeHeaderView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        selectPartySizeHeaderView.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
         
         selectPeopleCollectionView.topAnchor.constraint(equalTo: selectPartySizeHeaderView.bottomAnchor, constant: 10).isActive = true
         selectPeopleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -128,7 +128,7 @@ class AddNewTableCollectionViewController: UIViewController {
         selectTableHeaderView.topAnchor.constraint(equalTo: selectPeopleCollectionView.bottomAnchor, constant: 10).isActive = true
         selectTableHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         selectTableHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        selectTableHeaderView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        selectTableHeaderView.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
         
         selectTableCollectionView.topAnchor.constraint(equalTo: selectTableHeaderView.bottomAnchor, constant: 10).isActive = true
         selectTableCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -174,7 +174,7 @@ class AddNewTableCollectionViewController: UIViewController {
         self.selectTableCollectionView.reloadData()
     }
     
-    func isTableAvailable(table_name: String, restaurantID: String){
+    func isTableAvailable(table_name: String, partySize: Int, restaurantID: String){
         let query = Firestore.firestore().collection("restaurants").document(restaurantID)
         
         query.getDocument { (document, error) in
@@ -189,7 +189,7 @@ class AddNewTableCollectionViewController: UIViewController {
                     let table = Table(dict: dict[table_name] as! [String : Any])
                     if table.available == true {
                         self.updateTableFirebase(table_name: table_name, restaurantID: restaurantID)
-                        self.addNewOrder(table_name: table_name)
+                        self.addNewOrder(table_name: table_name, partySize: partySize)
                         self.dismiss(animated: true, completion: nil)
                     }
                     else {
@@ -217,29 +217,39 @@ class AddNewTableCollectionViewController: UIViewController {
         }
     }
     
-    func addNewOrder(table_name: String) {
-        let orders = Firestore.firestore().collection("orders")
-        let newOrder = Order(table: table_name, completed: false, restaurantID: (userData?.restaurants[0])!, waiterID: (userData?.userId)!, paidDateTime: Date())
-        orders.addDocument(data: newOrder.documentData) { (error) in
+    func addNewOrder(table_name: String, partySize: Int) {
+        
+        let docRef = Firestore.firestore().collection("orders").document()
+        
+        //let newOrder = Order(table: table_name, completed: false, restaurantID: (userData?.restaurants[0])!, waiterID: (userData?.userId)!, paidDateTime: Date(), partySize: partySize)
+        
+        let newOrder = Order(table: table_name, completed: false, restaurantID: (userData?.restaurants[0])!, waiterID: userData!.userId, paidDateTime: Date(), orderID: docRef.documentID, partySize: partySize)
+    
+        docRef.setData(newOrder.documentData) { (error) in
             if let error = error {
-                print("Error Adding Document \(error.localizedDescription)")
+                print("Error while adding Document \(error.localizedDescription)")
             }
             else {
-                print("Document Added Successfully")
+                print("Document Added")
             }
         }
+        
     }
     
     @objc func addTableButtonPressed() {
         let selected = self.selectTableCollectionView.indexPathsForSelectedItems
+        let selectedPeople = self.selectPeopleCollectionView.indexPathsForSelectedItems
         
-        if selected?.count == 0 {
+        if selected?.count == 0 || selectedPeople?.count == 0{
             print("Select something ")
         }
         else {
             let selectedTable = selected?.first
+            let selectedPartySize = selectedPeople?.first
             let table = self.availableTables[selectedTable!.row]
-            isTableAvailable(table_name: table.table_name, restaurantID: (userData?.restaurants[0])!)
+            let partySize = Int(self.people[selectedPartySize!.row]) ?? 2
+            
+            isTableAvailable(table_name: table.table_name, partySize: partySize, restaurantID: (userData?.restaurants[0])!)
             
         }
     }

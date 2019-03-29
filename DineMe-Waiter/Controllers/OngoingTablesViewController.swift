@@ -16,6 +16,8 @@ class OngoingTablesViewController: UIViewController {
     
     let cellId = "cellID"
     
+    let tableHeaderID = "headerCellID"
+    
     var ongoingTables: [Order] = []
     
     let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
@@ -23,10 +25,14 @@ class OngoingTablesViewController: UIViewController {
     var ongoingTablesListener: ListenerRegistration?
     
     lazy var ongoingTableView: UITableView = {
+        
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(OngoingTableViewCell.self, forCellReuseIdentifier: cellId)
+        //tableView.register(OngoingTableHeaderViewCell.self, forHeaderFooterViewReuseIdentifier: tableHeaderID)
+       tableView.tableFooterView = UIView(frame: CGRect.zero)
         return tableView
+        
     }()
     
     var logoutButton: UIButton = {
@@ -57,7 +63,11 @@ class OngoingTablesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //navigationController?.navigationBar.topItem?.title = "Ongoing Tables"
+        //navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Ongoing Tables"
+        
         setupView()
         ongoingTableView.delegate = self
         ongoingTableView.dataSource = self
@@ -66,7 +76,9 @@ class OngoingTablesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         self.navigationItem.hidesBackButton = true
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTable))
         if userData?.restaurants.count == 0 {
             print("No Restaurants To Show")
@@ -107,7 +119,7 @@ class OngoingTablesViewController: UIViewController {
             self.ongoingTables = []
             for document in snapshot.documents {
                 print(document.data())
-                let order = Order(dict: document.data(), orderID: document.documentID)
+                let order = Order(dict: document.data())
                 print("json converted")
                 self.ongoingTables.append(order)
             }
@@ -137,6 +149,7 @@ extension OngoingTablesViewController: UITableViewDelegate, UITableViewDataSourc
         let order = self.ongoingTables[indexPath.row]
         let orderVC = OrderPageViewController()
         orderVC.orderID = order.orderID
+        orderVC.table = order.table
         self.navigationController?.pushViewController(orderVC, animated: true)
         
     }

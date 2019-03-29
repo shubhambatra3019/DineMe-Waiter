@@ -21,6 +21,10 @@ class CheckoutViewController: UIViewController {
     
     var orderItems = [OrderItem]()
     
+    let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
+    
+    var table: String!
+    
     lazy var itemsTable: UITableView = {
         let tableView = UITableView()
         tableView.register(OrderItemsTableViewCell.self, forCellReuseIdentifier: cellId)
@@ -30,6 +34,7 @@ class CheckoutViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 60.0
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         return tableView
     }()
     
@@ -49,7 +54,8 @@ class CheckoutViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blue
         setupViews()
-        
+    
+        navigationItem.title = "Cheque"
         // Do any additional setup after loading the view.
     }
     
@@ -103,7 +109,29 @@ class CheckoutViewController: UIViewController {
     }
     
     @objc func checkoutButtonPressed() {
-        print("Button was Pressed")
+        let query = Firestore.firestore().collection("orders").document(orderID)
+        
+        let queryRestuarnts = Firestore.firestore().collection("restaurants").document((userData?.restaurants[0])!)
+        
+        query.updateData(["completed": true, "paidDateTime": Date()]) { (error) in
+            if let error = error {
+                print("Error updating document \(error.localizedDescription)")
+            }
+            else {
+                print("Document Successfully updated")
+            }
+        }
+        
+        /*queryRestuarnts.updateData(["Tables.\(table).available": true]) { (error) in
+            if let error = error {
+                print("Error while updating \(error.localizedDescription)")
+            }
+            else {
+                print("Document Updated Successfully")
+            }
+        }
+        */
+        self.navigationController?.popViewController(animated: true)
     }
     
     func calcualteSubtotal(orderItems: [OrderItem]) -> Double {

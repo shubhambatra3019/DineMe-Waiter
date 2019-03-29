@@ -22,6 +22,12 @@ class MenuViewController: UIViewController {
     
     var orderID: String!
     
+    let contentView: UIView = {
+        let view = UIView(frame: CGRect.zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 50)
@@ -53,32 +59,47 @@ class MenuViewController: UIViewController {
     }()
     
     func setupViews() {
-        view.addSubview(menuTableView)
-        view.addSubview(myCollectionView)
         
-        self.myCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        self.myCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.myCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        self.myCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        contentView.addSubview(menuTableView)
+        contentView.addSubview(myCollectionView)
+        view.addSubview(contentView)
+        
+        self.contentView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.contentView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.contentView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        self.contentView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        self.myCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
+        self.myCollectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        self.myCollectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        self.myCollectionView.heightAnchor.constraint(equalToConstant: 70).isActive = true
         
         menuTableView.topAnchor.constraint(equalTo: self.myCollectionView.bottomAnchor).isActive = true
-        menuTableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        menuTableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        menuTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        menuTableView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        menuTableView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        menuTableView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.title = "Menu"
         setupViews()
+        
+        getMenuForRestaurant(restaurantID: userData!.restaurants[0])
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        getMenuForRestaurant(restaurantID: userData!.restaurants[0])
     }
 
     
