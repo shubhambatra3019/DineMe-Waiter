@@ -23,7 +23,7 @@ class CheckoutViewController: UIViewController {
     
     let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
-    var table: String!
+    var table: String = ""
     
     lazy var itemsTable: UITableView = {
         let tableView = UITableView()
@@ -81,7 +81,7 @@ class CheckoutViewController: UIViewController {
             var updatedItems = [OrderItem]()
             var document = snapshot.data()
             let items = document!["items"] as! [[String: Any]]
-            
+            self.table = document!["table"] as! String
             for item in items {
                 let orderItem = OrderItem(dict: item)
                 updatedItems.append(orderItem)
@@ -122,7 +122,7 @@ class CheckoutViewController: UIViewController {
             }
         }
         
-        /*queryRestuarnts.updateData(["Tables.\(table).available": true]) { (error) in
+        queryRestuarnts.updateData(["Tables.\(table).available": true]) { (error) in
             if let error = error {
                 print("Error while updating \(error.localizedDescription)")
             }
@@ -130,14 +130,21 @@ class CheckoutViewController: UIViewController {
                 print("Document Updated Successfully")
             }
         }
-        */
-        self.navigationController?.popViewController(animated: true)
+        //let ongoingTableVC = OngoingTablesViewController()
+    
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: OngoingTablesViewController.self) {
+                _ =  self.navigationController!.popToViewController(controller, animated: true)
+                
+                break
+            }
+        }
     }
     
     func calcualteSubtotal(orderItems: [OrderItem]) -> Double {
         var subtotal = 0.0
         for item in orderItems {
-            var price = Double(item.itemQuantity) * item.itemPrice
+            let price = Double(item.itemQuantity) * item.itemPrice
             subtotal += price
         }
         return subtotal

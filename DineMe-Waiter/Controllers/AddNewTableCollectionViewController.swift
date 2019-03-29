@@ -159,11 +159,16 @@ class AddNewTableCollectionViewController: UIViewController {
     
     func getAvailableTables(tablesDict: [String: Any]){
         self.tables = []
-        for key in Array(tablesDict.keys).sorted() {
+        let arrayKeys = Array(tablesDict.keys)
+        
+        let sortedKeys = arrayKeys.sorted { (str1, str2) -> Bool in
+            return Int(str1)! < Int(str2)!
+        }
+        
+        for key in sortedKeys {
             let table = Table(dict: tablesDict[key] as! [String : Any])
             self.tables.append(table)
         }
-        
         self.availableTables = []
     
         for table in tables {

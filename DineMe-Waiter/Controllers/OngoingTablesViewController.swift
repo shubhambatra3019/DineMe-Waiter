@@ -12,8 +12,6 @@ import FirebaseFirestore
 
 class OngoingTablesViewController: UIViewController {
     
-    let tables = ["Table1", "Table2", "Table3"]
-    
     let cellId = "cellID"
     
     let tableHeaderID = "headerCellID"
@@ -149,7 +147,6 @@ extension OngoingTablesViewController: UITableViewDelegate, UITableViewDataSourc
         let order = self.ongoingTables[indexPath.row]
         let orderVC = OrderPageViewController()
         orderVC.orderID = order.orderID
-        orderVC.table = order.table
         self.navigationController?.pushViewController(orderVC, animated: true)
         
     }

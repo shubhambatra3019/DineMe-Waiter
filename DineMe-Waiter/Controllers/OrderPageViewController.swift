@@ -25,8 +25,6 @@ class OrderPageViewController: UIViewController {
     
     var orderID: String!
     
-    var table: String!
-    
     lazy var orderTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(OrderPageTableViewCell.self, forCellReuseIdentifier: orderCellId)
@@ -159,7 +157,6 @@ class OrderPageViewController: UIViewController {
     
     @objc func checkoutButtonPressed() {
         let checkoutPage = CheckoutViewController()
-        checkoutPage.table = self.table
         checkoutPage.orderID = self.orderID
         self.navigationController?.pushViewController(checkoutPage, animated: true)
     }

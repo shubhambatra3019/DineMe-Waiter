@@ -112,14 +112,27 @@ class MenuViewController: UIViewController {
             }
             else {
                 if let document = documentSnapshot {
-                    let menu = document["menu"] as! [String : Any]
-                    self.categories = Array(menu.keys)
+                    self.categories = []
+                    self.items = []
+                    let menu = document["menu"] as! [[String : Any]]
+                    /*self.categories = Array(menu.keys)
                     for category in self.categories {
                         var tempArray = [MenuItem]()
                         for item in menu[category] as! [[String : Any]] {
                             tempArray.append(MenuItem(dict: item))
                         }
                         self.items.append(tempArray)
+                    }*/
+                    for menuCategory in menu {
+                        let category = menuCategory["category"] as! String
+                        let categoryItems = menuCategory["categoryItems"] as! [[String: Any]]
+                        self.categories.append(category)
+                        var tempItems = [MenuItem]()
+                        for item in categoryItems {
+                            tempItems.append(MenuItem(dict: item))
+                        }
+                        self.items.append(tempItems)
+                        
                     }
                     self.myCollectionView.reloadData()
                     self.menuTableView.reloadData()
