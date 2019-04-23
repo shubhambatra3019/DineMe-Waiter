@@ -12,7 +12,7 @@ class HeaderView: UIView {
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = NSAttributedString(string: "Select Party Size", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
+        //label.attributedText = NSAttributedString(string: "Select Party Size", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
         label.font = UIFont(name: "Helvetica-Bold", size: 36.0)
         label.textAlignment = .left
         label.textColor = UIColor.black
@@ -25,7 +25,8 @@ class HeaderView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.lightText
         setupViews()
-        titleLabel.text = title
+        
+        titleLabel.attributedText = NSAttributedString(string: title, attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
     }
     
     required init?(coder aDecoder: NSCoder) {

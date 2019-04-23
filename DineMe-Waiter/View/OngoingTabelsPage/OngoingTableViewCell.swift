@@ -10,10 +10,6 @@ import UIKit
 
 class OngoingTableViewCell: UITableViewCell {
     
-    class var identifier: String {
-        return String(describing: self)
-    }
-    
     var tableLabel: UILabel = {
         let label = UILabel()
         label.text = "Table1"

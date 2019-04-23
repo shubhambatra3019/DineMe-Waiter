@@ -33,6 +33,7 @@ class OrderPageViewController: UIViewController {
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 60.0
+        tableView.layer.zPosition = 1.0
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
@@ -45,7 +46,6 @@ class OrderPageViewController: UIViewController {
         button.titleLabel?.textColor = UIColor.white
         button.titleLabel?.textAlignment = .center
         button.layer.cornerRadius = 25.0
-        button.layer.zPosition = 1.0
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -59,6 +59,14 @@ class OrderPageViewController: UIViewController {
         button.titleLabel?.textAlignment = .center
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    let noItemsImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "order_empty"))
+        imageView.isHidden = true
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override func viewDidLoad() {
@@ -83,9 +91,11 @@ class OrderPageViewController: UIViewController {
     }
     
     func setupViews() {
+        
         view.addSubview(orderTableView)
         view.addSubview(addItemButton)
         view.addSubview(checkoutButton)
+        view.addSubview(noItemsImageView)
         
         orderTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         orderTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -146,6 +156,7 @@ class OrderPageViewController: UIViewController {
             print(self.done.count)
             
             self.orderTableView.reloadData()
+            
         })
     }
     

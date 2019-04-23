@@ -14,20 +14,25 @@ class OngoingTablesViewController: UIViewController {
     
     let cellId = "cellID"
     
-    let tableHeaderID = "headerCellID"
-    
     var ongoingTables: [Order] = []
     
     let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
     var ongoingTablesListener: ListenerRegistration?
     
+    let noTableImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "table_empty"))
+        imageView.isHidden = true
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     lazy var ongoingTableView: UITableView = {
         
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(OngoingTableViewCell.self, forCellReuseIdentifier: cellId)
-        //tableView.register(OngoingTableHeaderViewCell.self, forHeaderFooterViewReuseIdentifier: tableHeaderID)
        tableView.tableFooterView = UIView(frame: CGRect.zero)
         return tableView
         
@@ -45,6 +50,12 @@ class OngoingTablesViewController: UIViewController {
     func setupView() {
         view.addSubview(ongoingTableView)
         view.addSubview(logoutButton)
+        view.addSubview(noTableImageView)
+        
+        noTableImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        noTableImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        noTableImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        noTableImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         ongoingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         ongoingTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -60,12 +71,11 @@ class OngoingTablesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //navigationController?.navigationBar.topItem?.title = "Ongoing Tables"
         //navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Ongoing Tables"
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
         setupView()
         ongoingTableView.delegate = self
         ongoingTableView.dataSource = self
@@ -97,6 +107,10 @@ class OngoingTablesViewController: UIViewController {
         self.navigationController?.present(addNewTableVC, animated: true, completion: nil)
     }
     
+    @objc func editButtonPressed() {
+        print("Edit Button Pressed")
+    }
+    
     @objc func logoutButtonPressed() {
         print("Logout")
         try? Auth.auth().signOut()
@@ -110,18 +124,26 @@ class OngoingTablesViewController: UIViewController {
         let query = Firestore.firestore().collection("orders").whereField("restaurantID", isEqualTo: restuarantID).whereField("waiterID", isEqualTo: waiterID).whereField("completed", isEqualTo: false)
         ongoingTablesListener = query.addSnapshotListener({ (snapshot, error) in
             if let error = error {
+                self.noTableImageView.isHidden = false
                 print("Got an error retrieving orders: \(error)")
                 return
             }
             guard let snapshot = snapshot else { return }
             self.ongoingTables = []
-            for document in snapshot.documents {
-                print(document.data())
-                let order = Order(dict: document.data())
-                print("json converted")
-                self.ongoingTables.append(order)
+            if snapshot.documents.count == 0 {
+                self.noTableImageView.isHidden = false
+                
             }
-            self.ongoingTableView.reloadData()
+            else {
+                for document in snapshot.documents {
+                    print(document.data())
+                    let order = Order(dict: document.data())
+                    print("json converted")
+                    self.ongoingTables.append(order)
+                }
+                self.noTableImageView.isHidden = true
+                self.ongoingTableView.reloadData()
+            }
         })
     }
     

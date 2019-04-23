@@ -115,14 +115,7 @@ class MenuViewController: UIViewController {
                     self.categories = []
                     self.items = []
                     let menu = document["menu"] as! [[String : Any]]
-                    /*self.categories = Array(menu.keys)
-                    for category in self.categories {
-                        var tempArray = [MenuItem]()
-                        for item in menu[category] as! [[String : Any]] {
-                            tempArray.append(MenuItem(dict: item))
-                        }
-                        self.items.append(tempArray)
-                    }*/
+            
                     for menuCategory in menu {
                         let category = menuCategory["category"] as! String
                         let categoryItems = menuCategory["categoryItems"] as! [[String: Any]]
