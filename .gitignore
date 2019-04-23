@@ -48,7 +48,7 @@ playground.xcworkspace
 #
 Pods/
 
-.xcworkspace/
+*.xcworkspace/
 
 Podfile.lock
 
