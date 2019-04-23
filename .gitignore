@@ -50,7 +50,7 @@ Pods/
 
 .xcworkspace/
 
-Pofile.lock
+Podfile.lock
 
 # Carthage
 #
