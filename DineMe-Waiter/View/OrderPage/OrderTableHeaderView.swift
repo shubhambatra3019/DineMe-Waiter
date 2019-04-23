@@ -46,9 +46,9 @@ class OrderTableHeaderView: UITableViewHeaderFooterView {
         titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalToConstant: 100)
         
-        moveItemsButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
+        moveItemsButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         moveItemsButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        moveItemsButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
+        moveItemsButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
         moveItemsButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         
     }

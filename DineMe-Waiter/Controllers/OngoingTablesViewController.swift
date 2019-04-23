@@ -16,9 +16,11 @@ class OngoingTablesViewController: UIViewController {
     
     var ongoingTables: [Order] = []
     
-    let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
+    //let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
     var ongoingTablesListener: ListenerRegistration?
+    
+    var restaurantID: String!
     
     let noTableImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "table_empty"))
@@ -75,7 +77,6 @@ class OngoingTablesViewController: UIViewController {
         //navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Ongoing Tables"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
         setupView()
         ongoingTableView.delegate = self
         ongoingTableView.dataSource = self
@@ -88,12 +89,9 @@ class OngoingTablesViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTable))
-        if userData?.restaurants.count == 0 {
-            print("No Restaurants To Show")
-        }
-        else {
-            startListeningForOngoingTables(restuarantID: (userData?.restaurants[0])!, waiterID: (userData?.userId)!)
-        }
+
+        startListeningForOngoingTables(restaurantID: restaurantID, waiterID: Auth.auth().currentUser!.uid)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,24 +102,21 @@ class OngoingTablesViewController: UIViewController {
     
     @objc func addNewTable() {
         let addNewTableVC = AddNewTableCollectionViewController()
+        addNewTableVC.restaurantID = restaurantID
         self.navigationController?.present(addNewTableVC, animated: true, completion: nil)
     }
-    
-    @objc func editButtonPressed() {
-        print("Edit Button Pressed")
-    }
-    
+
     @objc func logoutButtonPressed() {
         print("Logout")
-        try? Auth.auth().signOut()
+        /*try? Auth.auth().signOut()
         UserDefaults.standard.removeObject(forKey: "user")
         //let loginVC = LoginViewController()
         //navigationController?.present(loginVC, animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)*/
     }
     
-    private func startListeningForOngoingTables(restuarantID: String, waiterID: String) {
-        let query = Firestore.firestore().collection("orders").whereField("restaurantID", isEqualTo: restuarantID).whereField("waiterID", isEqualTo: waiterID).whereField("completed", isEqualTo: false)
+    private func startListeningForOngoingTables(restaurantID: String, waiterID: String) {
+        let query = Firestore.firestore().collection("orders").whereField("restaurantID", isEqualTo: restaurantID).whereField("waiterID", isEqualTo: waiterID).whereField("completed", isEqualTo: false)
         ongoingTablesListener = query.addSnapshotListener({ (snapshot, error) in
             if let error = error {
                 self.noTableImageView.isHidden = false
@@ -169,6 +164,7 @@ extension OngoingTablesViewController: UITableViewDelegate, UITableViewDataSourc
         let order = self.ongoingTables[indexPath.row]
         let orderVC = OrderPageViewController()
         orderVC.orderID = order.orderID
+        orderVC.restaurantID = restaurantID
         self.navigationController?.pushViewController(orderVC, animated: true)
         
     }

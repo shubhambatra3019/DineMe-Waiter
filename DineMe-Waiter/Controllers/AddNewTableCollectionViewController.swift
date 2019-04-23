@@ -19,6 +19,8 @@ class AddNewTableCollectionViewController: UIViewController {
     
     let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
+    var restaurantID: String!
+    
     var tables = [Table]()
     
     var availableTables = [Table]()
@@ -151,7 +153,7 @@ class AddNewTableCollectionViewController: UIViewController {
             }
             
             if let document = document {
-                let dict = document["Tables"] as! [String: Any]
+                let dict = document["tables"] as! [String: Any]
                 self.getAvailableTables(tablesDict: dict)
             }
         }
@@ -179,7 +181,7 @@ class AddNewTableCollectionViewController: UIViewController {
         self.selectTableCollectionView.reloadData()
     }
     
-    func isTableAvailable(table_name: String, partySize: Int, restaurantID: String){
+    func isTableAvailable(tableName: Int, partySize: Int, restaurantID: String){
         let query = Firestore.firestore().collection("restaurants").document(restaurantID)
         
         query.getDocument { (document, error) in
@@ -188,8 +190,8 @@ class AddNewTableCollectionViewController: UIViewController {
             }
             
             if let document = document {
-                let dict = document["Tables"] as! [String: Any]
-                
+                let dict = document["tables"] as! [String: Any]
+                let table_name = String(tableName)
                 if (dict.keys.contains(table_name)) {
                     let table = Table(dict: dict[table_name] as! [String : Any])
                     if table.available == true {
@@ -211,7 +213,7 @@ class AddNewTableCollectionViewController: UIViewController {
     func updateTableFirebase(table_name: String, restaurantID: String) {
         let query = Firestore.firestore().collection("restaurants").document(restaurantID)
         query.updateData([
-            "Tables.\(table_name).available": false
+            "tables.\(table_name).available": false
         ]) { error in
             if let error = error {
                 print("Error updating document: \(error.localizedDescription)")
@@ -228,7 +230,7 @@ class AddNewTableCollectionViewController: UIViewController {
         
         //let newOrder = Order(table: table_name, completed: false, restaurantID: (userData?.restaurants[0])!, waiterID: (userData?.userId)!, paidDateTime: Date(), partySize: partySize)
         
-        let newOrder = Order(table: table_name, completed: false, restaurantID: (userData?.restaurants[0])!, waiterID: userData!.userId, paidDateTime: Date(), orderID: docRef.documentID, partySize: partySize)
+        let newOrder = Order(table: table_name, completed: false, restaurantID: restaurantID, waiterID: userData!.userId, paidDateTime: Date(), orderID: docRef.documentID, partySize: partySize)
     
         docRef.setData(newOrder.documentData) { (error) in
             if let error = error {
@@ -254,7 +256,7 @@ class AddNewTableCollectionViewController: UIViewController {
             let table = self.availableTables[selectedTable!.row]
             let partySize = Int(self.people[selectedPartySize!.row]) ?? 2
             
-            isTableAvailable(table_name: table.table_name, partySize: partySize, restaurantID: (userData?.restaurants[0])!)
+            isTableAvailable(tableName: table.tableName, partySize: partySize, restaurantID: restaurantID)
             
         }
     }
@@ -293,7 +295,7 @@ extension AddNewTableCollectionViewController: UICollectionViewDelegate, UIColle
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tableCollectionViewCellId, for: indexPath) as! AddNewTableCollectionViewCell
-            cell.numberLabel.text = availableTables[indexPath.row].table_name
+            cell.numberLabel.text = String(availableTables[indexPath.row].tableName)
             return cell
         }
     }

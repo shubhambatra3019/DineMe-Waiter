@@ -8,35 +8,27 @@
 
 import UIKit
 
-class QuantityChangeView: UIView {
+class QuantityView: UIView {
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    var quantity: Int = 0 {
+        didSet {
+            quantityLabel.text = String(quantity)
+            self.enableButtons(quantity: self.quantity)
+        }
     }
-    */
-
-    var quantity: Int = 0
     
     let decreaseQuantityButton: UIButton = {
-       let button = UIButton()
-        button.setTitle("-", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 30.0)
-        button.backgroundColor = UIColor.orange
+        let button = UIButton()
+        let minusImage = UIImage.fontAwesomeIcon(name: .minusCircle, style: .solid, textColor: UIColor.green, size: CGSize(width: 50, height: 50))
+        button.setImage(minusImage, for: .normal)
         button.addTarget(self, action: #selector(decreaseButtonPressed), for: .touchUpInside)
-        button.isEnabled = false
         return button
     }()
     
     let increaseQuantityButton: UIButton = {
         let button = UIButton()
-        button.setTitle("+", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = UIColor.orange
-        button.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 20.0)
+        let buttonImage = UIImage.fontAwesomeIcon(name: .plusCircle, style: .solid, textColor: UIColor.green, size: CGSize(width: 50, height: 50))
+        button.setImage(buttonImage, for: .normal)
         button.addTarget(self, action: #selector(increaseButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -46,13 +38,13 @@ class QuantityChangeView: UIView {
         label.text = "1"
         label.backgroundColor = UIColor.white
         label.textAlignment = .center
-        label.textColor = UIColor.orange
+        label.textColor = UIColor.black
         label.font = UIFont(name: "Helvetica-Bold", size: 20.0)
         return label
     }()
     
     let quantityStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 0
@@ -60,10 +52,12 @@ class QuantityChangeView: UIView {
         return stackView
     }()
     
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
-        quantity = 1
         
     }
     
@@ -73,25 +67,29 @@ class QuantityChangeView: UIView {
     
     
     @objc private func decreaseButtonPressed() {
+        
         self.quantity -= 1
+        
+    }
+    
+    func enableButtons(quantity: Int) {
         if self.quantity == 1 {
             self.decreaseQuantityButton.isEnabled = false
         }
-        if self.quantity == 9 {
+        else {
+            self.decreaseQuantityButton.isEnabled = true
+        }
+        
+        if self.quantity == 10 {
+            self.increaseQuantityButton.isEnabled = false
+        }
+        else {
             self.increaseQuantityButton.isEnabled = true
         }
-        self.quantityLabel.text = String(self.quantity)
     }
     
     @objc private func increaseButtonPressed() {
         self.quantity += 1
-        if self.quantity == 2 {
-            self.decreaseQuantityButton.isEnabled = true
-        }
-        if self.quantity == 10 {
-            self.increaseQuantityButton.isEnabled = false
-        }
-        self.quantityLabel.text = String(self.quantity)
     }
     
     func setupViews() {
@@ -102,9 +100,10 @@ class QuantityChangeView: UIView {
         
         quantityStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         quantityStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        quantityStackView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        quantityStackView.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        quantityStackView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        quantityStackView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
     }
     
 }
+

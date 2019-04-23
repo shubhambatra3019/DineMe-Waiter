@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
             print("Not Logged in")
         }
         else {
-            presentOngoingTablesPage()
+            presentRestaurantsPage()
         }
         
         setupUI()
@@ -93,10 +93,9 @@ class LoginViewController: UIViewController {
         
     }
     
-    func presentOngoingTablesPage() {
-        let ongoingTablesVC = OngoingTablesViewController()
-        navigationController?.pushViewController(ongoingTablesVC, animated: true)
-        
+    func presentRestaurantsPage() {
+        let restaurantsVC = RestaurantsViewController()
+        navigationController?.pushViewController(restaurantsVC, animated: true)
     }
     
 }
@@ -136,7 +135,7 @@ extension LoginViewController: FUIAuthDelegate{
                     }
                     
                     
-                    self.presentOngoingTablesPage()
+                    self.presentRestaurantsPage()
                 }
             }
             

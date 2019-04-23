@@ -11,14 +11,16 @@ import Firebase
 import FirebaseFirestore
 
 class MenuViewController: UIViewController {
-
+    
     var categories = [String]()
     var items = [[MenuItem]]()
     
     let tableViewCellId = "menuCell"
     let collectionViewCellId = "myCell"
     
-    let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
+    //let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
+    
+    var restaurantID: String!
     
     var orderID: String!
     
@@ -27,6 +29,10 @@ class MenuViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    let blur = UIBlurEffect(style: UIBlurEffect.Style.dark)
+    
+    lazy var blurEffectView = UIVisualEffectView(effect: blur)
     
     lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -58,6 +64,13 @@ class MenuViewController: UIViewController {
         return tableView
     }()
     
+    let itemAddedToast: CustomToast = {
+        let image = UIImage.fontAwesomeIcon(name: .checkCircle, style: .solid, textColor: UIColor.green, size: CGSize(width: 50, height: 50))
+        let toast = CustomToast(image: image, description: "Successfully Added", frame: CGRect.zero)
+        
+        return toast
+    }()
+    
     func setupViews() {
         
         contentView.addSubview(menuTableView)
@@ -86,9 +99,10 @@ class MenuViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Menu"
+        
         setupViews()
         
-        getMenuForRestaurant(restaurantID: userData!.restaurants[0])
+        getMenuForRestaurant(restaurantID: restaurantID)
         // Do any additional setup after loading the view.
     }
     
@@ -101,7 +115,7 @@ class MenuViewController: UIViewController {
         super.viewWillDisappear(animated)
         
     }
-
+    
     
     func getMenuForRestaurant(restaurantID: String) {
         let restaurantDocument = Firestore.firestore().collection("restaurants").document(restaurantID)
@@ -115,7 +129,7 @@ class MenuViewController: UIViewController {
                     self.categories = []
                     self.items = []
                     let menu = document["menu"] as! [[String : Any]]
-            
+                    
                     for menuCategory in menu {
                         let category = menuCategory["category"] as! String
                         let categoryItems = menuCategory["categoryItems"] as! [[String: Any]]
@@ -130,6 +144,21 @@ class MenuViewController: UIViewController {
                     self.myCollectionView.reloadData()
                     self.menuTableView.reloadData()
                 }
+            }
+        }
+    }
+    
+    func addItemToFirebase(orderID: String, orderItem: OrderItem) {
+        
+        let query = Firestore.firestore().collection("orders").document(orderID)
+        
+        query.updateData(["items": FieldValue.arrayUnion([orderItem.documentData])]) { (error) in
+            if let error = error {
+                print("Error while adding \(error.localizedDescription)")
+            }
+            else {
+                print("Item Added Successfully")
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -173,17 +202,30 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let addMenuItemVC = AddMenuItemViewController()
-        addMenuItemVC.menuItem = items[indexPath.section][indexPath.row]
-        addMenuItemVC.orderID = self.orderID
-        self.navigationController?.present(addMenuItemVC, animated: true, completion: nil)
+        /*let addMenuItemVC = AddMenuItemViewController()
+         addMenuItemVC.menuItem = items[indexPath.section][indexPath.row]
+         addMenuItemVC.orderID = self.orderID
+         self.navigationController?.present(addMenuItemVC, animated: true, completion: nil)*/
+        let menuItem = items[indexPath.section][indexPath.row]
+        let orderItem = OrderItem(itemName: menuItem.name!, itemQuantity: 1, itemPrice: menuItem.price!)
+        let addMenuItemViewController = AddItemViewController()
+        addMenuItemViewController.orderItem = orderItem
+        addMenuItemViewController.delegate = self
+        addMenuItemViewController.modalPresentationStyle = .overCurrentContext
+        
+        present(addMenuItemViewController, animated: true, completion: nil)
+        
+        blurEffectView.frame = view.bounds
+        blurEffectView.alpha = 0.9
+        view.addSubview(blurEffectView)
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellId, for: indexPath) as! MenuItemsTableViewCell
         cell.itemLabel.text = items[indexPath.section][indexPath.row].name
         //cell.descriptionLabel.text = menuItems[indexPath.row].itemDescription
-        //cell.priceLabel.text = String(menuItems[indexPath.row].itemPrice)
+        cell.priceLabel.text = String("$\(items[indexPath.section][indexPath.row].price!)")
         return cell
     }
     
@@ -192,8 +234,25 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
+        return 60.0
     }
+    
+}
+
+extension MenuViewController: AddItemViewDelegate {
+    func addItem(orderItem: OrderItem) {
+        self.addItemToFirebase(orderID: orderID, orderItem: orderItem)
+        blurEffectView.removeFromSuperview()
+        self.showToast(toastView: itemAddedToast)
+        
+    }
+    
+    func dismissController(controller: UIViewController) {
+        blurEffectView.removeFromSuperview()
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+}
     /*
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let visibleCells = self.menuTableView.indexPathsForVisibleRows {
@@ -207,4 +266,3 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
     }*/
-}
