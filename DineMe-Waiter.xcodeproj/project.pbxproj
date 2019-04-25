@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0F847A22E1DD7234A321DCEF /* Pods_DineMe_Waiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */; };
+		4E3FC33222455B6100C596E0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3FC33122455B6100C596E0 /* LoginView.swift */; };
+		4E4E1D3A2252A88E00CC3CB0 /* SignUpFirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4E1D392252A88E00CC3CB0 /* SignUpFirstPageViewController.swift */; };
+		4E4E1D3C2252AC1600CC3CB0 /* SignUpSecondPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4E1D3B2252AC1600CC3CB0 /* SignUpSecondPageViewController.swift */; };
+		4E4E1D3E2252AC6F00CC3CB0 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4E1D3D2252AC6F00CC3CB0 /* SignUpView.swift */; };
 		4FB33FBA22415F9000493528 /* WaiterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB33FB922415F9000493528 /* WaiterProfileViewController.swift */; };
 		4FB33FBD2241601C00493528 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB33FBC2241601C00493528 /* Assets.xcassets */; };
 		7F24EE722231BB2E00B5676B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F24EE712231BB2E00B5676B /* User.swift */; };
@@ -62,6 +66,10 @@
 
 /* Begin PBXFileReference section */
 		2D0B7EB918EAD4392D5A802E /* Pods_DineMe_Waiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DineMe_Waiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E3FC33122455B6100C596E0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4E4E1D392252A88E00CC3CB0 /* SignUpFirstPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFirstPageViewController.swift; sourceTree = "<group>"; };
+		4E4E1D3B2252AC1600CC3CB0 /* SignUpSecondPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSecondPageViewController.swift; sourceTree = "<group>"; };
+		4E4E1D3D2252AC6F00CC3CB0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		4FB33FB922415F9000493528 /* WaiterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaiterProfileViewController.swift; sourceTree = "<group>"; };
 		4FB33FBC2241601C00493528 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F24EE712231BB2E00B5676B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -148,10 +156,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		4EE58FA22204D33300918778 /* Controllers */ = {
+		4E3FC33022455B4700C596E0 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				4E3FC33122455B6100C596E0 /* LoginView.swift */,
+				4E4E1D3D2252AC6F00CC3CB0 /* SignUpView.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		4E3FC333224570D000C596E0 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
 				7F66861E2204CA3F00639C91 /* LoginViewController.swift */,
+				4E4E1D392252A88E00CC3CB0 /* SignUpFirstPageViewController.swift */,
+				4E4E1D3B2252AC1600CC3CB0 /* SignUpSecondPageViewController.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		4EE58FA22204D33300918778 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E3FC333224570D000C596E0 /* LoginView */,
 				7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */,
 				7FE6E25F220D2AB60052CD8B /* MenuViewController.swift */,
 				7F464E9E22246F71002C2DB5 /* TableItemsViewController.swift */,
@@ -196,11 +223,11 @@
 		7F66861B2204CA3F00639C91 /* DineMe-Waiter */ = {
 			isa = PBXGroup;
 			children = (
+				7F66861C2204CA3F00639C91 /* AppDelegate.swift */,
 				7F336C8522402F7300247E56 /* Extensions */,
 				7FE6E258220D1DD90052CD8B /* View */,
 				7FE6E257220D1DD40052CD8B /* Model */,
 				4EE58FA22204D33300918778 /* Controllers */,
-				7F66861C2204CA3F00639C91 /* AppDelegate.swift */,
 				7F6686202204CA3F00639C91 /* Main.storyboard */,
 				7F6686252204CA4200639C91 /* LaunchScreen.storyboard */,
 				7F6686282204CA4200639C91 /* Info.plist */,
@@ -243,6 +270,7 @@
 		7FE6E258220D1DD90052CD8B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4E3FC33022455B4700C596E0 /* LoginView */,
 				7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */,
 				7F6D08B8220DBC5F00048577 /* MenuCollectionViewCell.swift */,
 				7F95630C22189D8800B78A0F /* MenuItemsTableViewCell.swift */,
@@ -417,7 +445,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -435,7 +463,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -462,9 +490,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DineMe-Waiter/Pods-DineMe-Waiter-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAnonymousAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseEmailAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
@@ -474,9 +502,9 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseEmailAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
@@ -525,17 +553,21 @@
 				7F89CEF2222F2EC3001B7613 /* OrderPageTableViewCell.swift in Sources */,
 				7F464EAF2226EAB3002C2DB5 /* OrderedItemsSummaryTableViewCell.swift in Sources */,
 				7F89CEF0222F2DE7001B7613 /* OrderPageViewController.swift in Sources */,
+				4E4E1D3C2252AC1600CC3CB0 /* SignUpSecondPageViewController.swift in Sources */,
 				7F464EA52224A8E4002C2DB5 /* OrderItem.swift in Sources */,
 				7F464EAB2224EF30002C2DB5 /* CustomizedView.swift in Sources */,
 				7F464EA72224DC33002C2DB5 /* OrderSummaryView.swift in Sources */,
 				7F464EA122247AD6002C2DB5 /* OrderItemsTableViewCell.swift in Sources */,
+				4E4E1D3E2252AC6F00CC3CB0 /* SignUpView.swift in Sources */,
 				7F89CEEC222F02DD001B7613 /* AddNewTableCollectionViewController.swift in Sources */,
 				7F336C8722402F8C00247E56 /* Encodable+Decodable.swift in Sources */,
 				7F89CEF422303E6F001B7613 /* OrderTableHeaderView.swift in Sources */,
+				4E4E1D3A2252A88E00CC3CB0 /* SignUpFirstPageViewController.swift in Sources */,
 				7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */,
 				7F95630F2218ADAC00B78A0F /* MenuITem.swift in Sources */,
 				7FEC4EAC2237604200F1D027 /* Order.swift in Sources */,
 				7F89CEEE222F070C001B7613 /* HeaderView.swift in Sources */,
+				4E3FC33222455B6100C596E0 /* LoginView.swift in Sources */,
 				7F66861D2204CA3F00639C91 /* AppDelegate.swift in Sources */,
 				7F336C892240747700247E56 /* Table.swift in Sources */,
 				7FE6E25A220D1DF50052CD8B /* OngoingTablesViewController.swift in Sources */,
@@ -717,7 +749,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EJD538U5T2;
+				DEVELOPMENT_TEAM = PYK34TKJT5;
 				INFOPLIST_FILE = "DineMe-Waiter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -737,7 +769,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EJD538U5T2;
+				DEVELOPMENT_TEAM = PYK34TKJT5;
 				INFOPLIST_FILE = "DineMe-Waiter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

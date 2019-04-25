@@ -11,7 +11,8 @@ import Firebase
 import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
 
     var window: UIWindow?
 
@@ -20,12 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
+        //Google Sign in Configuration
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
         let rootViewController = LoginViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        window?.rootViewController = navigationController
+        window?.rootViewController = rootViewController
 
         return true
     }
@@ -53,7 +57,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return (GIDSignIn.sharedInstance()?.handle(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))!
+        return (GIDSignIn.sharedInstance()?.handle(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))!
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            // ...
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            if let error = error {
+                // ...
+                return
+            }
+            // User is signed in
+            // ...
+            guard let userData = authResult?.user else {return}
+            let userDocument = Firestore.firestore().collection("users").document(userData.uid)
+            
+            userDocument.getDocument { (document, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                }
+                
+                if let document = document {
+                    
+                    if document.exists {
+                        print("Document already exists")
+                        let user = User(dict: document.data() ?? [:])
+                        UserDefaults.standard.set(user.documentData, forKey: "user")
+                        
+                    }
+                    else {
+                        let newUser = User(name: userData.displayName ?? "", email: userData.email!, userId: userData.uid)
+                        userDocument.setData(newUser.documentData)
+                        UserDefaults.standard.set(newUser.documentData, forKey: "user")
+                    }
+                    
+                    let loginVC = self.window?.rootViewController as? LoginViewController
+                    let ongoingTablesVC = OngoingTablesViewController()
+                    loginVC?.present(ongoingTablesVC, animated: true, completion: nil)
+                }
+            }
+            
+        }
     }
 
 
