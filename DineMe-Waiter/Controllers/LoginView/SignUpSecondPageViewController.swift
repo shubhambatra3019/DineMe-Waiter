@@ -11,7 +11,6 @@ import Firebase
 class SignUpSecondPageViewController: UIViewController{
     
     let db = Firestore.firestore()
-
     
     //Setup View
     lazy var signUpView : SignUpView = {
@@ -86,13 +85,38 @@ class SignUpSecondPageViewController: UIViewController{
             }
             
             // TODO: if successful signup, Add user to the firebase database
+            let newUser = User(name: "\(firstName) \(lastName)", email: email, userId: authDataResult.user.uid)
             
-//            let newUser = UPoolUser(email: email, fn: firstName, ln: lastName, uid: authDataResult.user.uid, fcmToken: fcmToken)
-//            //Add user to the Firebase database
-//        self.db.collection(FirebaseDatabaseKeys.usersKey).document(authDataResult.user.uid).setData(newUser.dictionary, completion: { (err) in
-//
-//            })
+            //Add user to the Firebase database
+            let userDocument = Firestore.firestore().collection("users").document(authDataResult.user.uid)
+            userDocument.setData(newUser.documentData){ error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("user saved Successfully")
+                }
+            }
+            
+            self.sendVerificationMail()
+            self.dismiss(animated: true, completion: nil)
         })
+    }
+    
+    private func sendVerificationMail() {
+        let authUser = Auth.auth().currentUser
+        guard let emailVerified = authUser?.isEmailVerified else {return}
+        if authUser != nil && (!emailVerified){
+            authUser?.sendEmailVerification(completion: { (error) in
+                // Notify the user that the mail has sent or couldn't because of an error.
+                if let error = error{
+                    print("\(error.localizedDescription)")
+                } else {
+                    print("Verification Email successfully sent")
+                }
+            })
+        } else {
+            // Either the user is not available, or the user is already verified.
+        }
     }
     
     private func allFieldsFull() -> Bool{
