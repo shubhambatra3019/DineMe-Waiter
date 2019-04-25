@@ -48,6 +48,7 @@
 		7F9B23362229A25400BE6B94 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B23352229A25400BE6B94 /* AddItemViewController.swift */; };
 		7F9B233A2229CB8B00BE6B94 /* AddNewTableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B23392229CB8B00BE6B94 /* AddNewTableCollectionViewCell.swift */; };
 		7FC85EB5225BCAC600C9FEC6 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC85EB4225BCAC600C9FEC6 /* RestaurantViewController.swift */; };
+		7FD1602C22722EC0003286D6 /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1602B22722EC0003286D6 /* EditTableViewController.swift */; };
 		7FE6E25A220D1DF50052CD8B /* OngoingTablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */; };
 		7FE6E25C220D1E100052CD8B /* OngoingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */; };
 		7FE6E260220D2AB60052CD8B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6E25F220D2AB60052CD8B /* MenuViewController.swift */; };
@@ -119,6 +120,7 @@
 		7F9B23352229A25400BE6B94 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		7F9B23392229CB8B00BE6B94 /* AddNewTableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableCollectionViewCell.swift; sourceTree = "<group>"; };
 		7FC85EB4225BCAC600C9FEC6 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		7FD1602B22722EC0003286D6 /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		7FE6E259220D1DF50052CD8B /* OngoingTablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTablesViewController.swift; sourceTree = "<group>"; };
 		7FE6E25B220D1E100052CD8B /* OngoingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTableViewCell.swift; sourceTree = "<group>"; };
 		7FE6E25F220D2AB60052CD8B /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				7F89CEEF222F2DE7001B7613 /* OrderPageViewController.swift */,
 				4FB33FB922415F9000493528 /* WaiterProfileViewController.swift */,
 				7FC85EB4225BCAC600C9FEC6 /* RestaurantViewController.swift */,
+				7FD1602B22722EC0003286D6 /* EditTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				7F66861F2204CA3F00639C91 /* LoginViewController.swift in Sources */,
 				7F9B23362229A25400BE6B94 /* AddItemViewController.swift in Sources */,
 				7F74E9B2226F9BB600258E29 /* AddMenuItemView.swift in Sources */,
+				7FD1602C22722EC0003286D6 /* EditTableViewController.swift in Sources */,
 				7F89CEF2222F2EC3001B7613 /* OrderPageTableViewCell.swift in Sources */,
 				7FC85EB5225BCAC600C9FEC6 /* RestaurantViewController.swift in Sources */,
 				7F464EAF2226EAB3002C2DB5 /* OrderedItemsSummaryTableViewCell.swift in Sources */,

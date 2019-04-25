@@ -23,6 +23,8 @@ class CheckoutViewController: UIViewController {
     
     let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
+    var restaurantID: String!
+    
     var table: String = ""
     
     lazy var itemsTable: UITableView = {
@@ -111,7 +113,7 @@ class CheckoutViewController: UIViewController {
     @objc func checkoutButtonPressed() {
         let query = Firestore.firestore().collection("orders").document(orderID)
         
-        let queryRestuarnts = Firestore.firestore().collection("restaurants").document((userData?.restaurants[0])!)
+        let queryRestuarnts = Firestore.firestore().collection("restaurants").document(restaurantID)
         
         query.updateData(["completed": true, "paidDateTime": Date()]) { (error) in
             if let error = error {

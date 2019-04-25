@@ -206,6 +206,7 @@ class OrderPageViewController: UIViewController {
     @objc func checkoutButtonPressed() {
         let checkoutPage = CheckoutViewController()
          checkoutPage.orderID = self.orderID
+        checkoutPage.restaurantID = restaurantID
          self.navigationController?.pushViewController(checkoutPage, animated: true)
     }
     

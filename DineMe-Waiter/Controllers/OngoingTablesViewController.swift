@@ -86,8 +86,6 @@ class OngoingTablesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.navigationItem.hidesBackButton = true
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTable))
 
         startListeningForOngoingTables(restaurantID: restaurantID, waiterID: Auth.auth().currentUser!.uid)
@@ -152,7 +150,7 @@ extension OngoingTablesViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OngoingTableViewCell
-        cell.tableLabel.text = "Table" + ongoingTables[indexPath.row].table
+        cell.tableLabel.text = "Table " + ongoingTables[indexPath.row].table
         return cell
     }
     

@@ -37,16 +37,21 @@ class RestaurantsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "My Restaurants"
+        
         setupViews()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        self.navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "My Restaurants"
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reload", style: .done, target: self, action: #selector(reloadPage))
         getRestaurantsForUser(userId: userData!.userId)
-        getInvitesForUser(userEmail: "example@example.com", role: "waiter")
+        getInvitesForUser(userEmail: userData!.email, role: "waiter")
         
     }
     
@@ -126,12 +131,17 @@ class RestaurantsViewController: UIViewController {
     @objc func acceptInviteButtonPressed(sender: UIButton) {
         print("Accept Pressed On \(sender.tag)")
         let invite = invites[sender.tag]
-        let employee = Employee(employeeID: userData!.userId, employeeName: userData!.name, role: "waiter")
+        let employee = Employee(employeeID: userData!.userId, employeeName: userData!.name, role: "waiter", email: userData!.email)
         updateInvitesCollection(id: invite.id, accepted: 1)
         updateUsersCollection(id: userData!.userId, restaurantID: invite.restaurantID)
         updateRestaurantsCollection(id: invite.restaurantID, employee: employee)
         
         getInvitesForUser(userEmail: "example@example.com", role: "waiter")
+    }
+    
+    @objc func reloadPage() {
+        getRestaurantsForUser(userId: userData!.userId)
+        getInvitesForUser(userEmail: userData!.email, role: "waiter")
     }
     
     @objc func rejectInviteButtonPressed(sender: UIButton) {
@@ -143,14 +153,14 @@ class RestaurantsViewController: UIViewController {
     
     func getRestaurantsForUser(userId: String) {
         let query = Firestore.firestore().collection("users").document(userData!.userId)
-        
+        self.restaurants = []
         query.getDocument { (snapshot, error) in
             if let error = error {
                 print("Error Occurred \(error.localizedDescription)")
             }
             else {
                 if let document = snapshot {
-                    self.restaurants = []
+                    
                     let userRestaurants = document["restaurants"] as! [String]
                     for restuarantID in userRestaurants {
                         let query = Firestore.firestore().collection("restaurants").document(restuarantID)

@@ -100,8 +100,7 @@ class AddNewTableCollectionViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let restaurantID = userData?.restaurants[0]
-        getTablesFromFirebase(restaurantID: restaurantID!)
+        getTablesFromFirebase(restaurantID: restaurantID)
     }
     
     func setupViews() {

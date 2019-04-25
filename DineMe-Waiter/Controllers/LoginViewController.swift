@@ -96,6 +96,7 @@ class LoginViewController: UIViewController {
     func presentRestaurantsPage() {
         let restaurantsVC = RestaurantsViewController()
         navigationController?.pushViewController(restaurantsVC, animated: true)
+        //present(restaurantsVC, animated: true, completion: nil)
     }
     
 }
