@@ -18,7 +18,7 @@ class OngoingTablesViewController: UIViewController {
     
     var ongoingTables: [Order] = []
     
-    let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
+    //let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
     var ongoingTablesListener: ListenerRegistration?
     
@@ -67,12 +67,12 @@ class OngoingTablesViewController: UIViewController {
         super.viewWillAppear(true)
         self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTable))
-        if userData?.restaurants.count == 0 {
-            print("No Restaurants To Show")
-        }
-        else {
-            startListeningForOngoingTables(restuarantID: (userData?.restaurants[0])!, waiterID: (userData?.userId)!)
-        }
+//        if userData?.restaurants.count == 0 {
+//            print("No Restaurants To Show")
+//        }
+//        else {
+//            startListeningForOngoingTables(restuarantID: (userData?.restaurants[0])!, waiterID: (userData?.userId)!)
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,9 +90,7 @@ class OngoingTablesViewController: UIViewController {
         print("Logout")
         try? Auth.auth().signOut()
         UserDefaults.standard.removeObject(forKey: "user")
-        //let loginVC = LoginViewController()
-        //navigationController?.present(loginVC, animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func startListeningForOngoingTables(restuarantID: String, waiterID: String) {

@@ -30,6 +30,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         let rootViewController = LoginViewController()
         window?.rootViewController = rootViewController
+        
+        if let user = Auth.auth().currentUser {
+            // segue to main view controller if the user is email verified
+            if user.isEmailVerified{
+                print("signed in")
+                let loginVC = LoginViewController()
+                window?.rootViewController = loginVC
+                loginVC.presentOngoingTablesPage()
+                loginVC.signedIn = true
+            } else {
+                window?.rootViewController = LoginViewController()
+            }
+            
+        } else {
+            // sign in
+            window?.rootViewController = LoginViewController()
+            
+        }
 
         return true
     }

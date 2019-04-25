@@ -14,6 +14,15 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
+    //signedIn
+    var signedIn : Bool = false {
+        didSet{
+            if signedIn == true{
+                presentOngoingTablesPage()
+            }
+        }
+    }
+    
     //Login View
     lazy var loginView: LoginView = {
         let view = LoginView()
