@@ -9,5 +9,6 @@ target 'DineMe-Waiter' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'FirebaseUI'
+  pod 'GoogleSignIn'
 
 end
