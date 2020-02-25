@@ -77,27 +77,28 @@ class MenuViewController: UIViewController {
         contentView.addSubview(myCollectionView)
         view.addSubview(contentView)
         
-        self.contentView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        self.contentView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.contentView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        self.contentView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        self.contentView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+        self.contentView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        self.contentView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+        self.contentView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
         
-        self.myCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
-        self.myCollectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
-        self.myCollectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
-        self.myCollectionView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        self.myCollectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+        self.myCollectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+        self.myCollectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+        self.myCollectionView.heightAnchor.constraint(equalToConstant: 70),
         
-        menuTableView.topAnchor.constraint(equalTo: self.myCollectionView.bottomAnchor).isActive = true
-        menuTableView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
-        menuTableView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
-        menuTableView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
-        
+        menuTableView.topAnchor.constraint(equalTo: self.myCollectionView.bottomAnchor),
+        menuTableView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+        menuTableView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+        menuTableView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
+        ])
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = false
+        //navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Menu"
         
         setupViews()
@@ -108,7 +109,7 @@ class MenuViewController: UIViewController {
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {

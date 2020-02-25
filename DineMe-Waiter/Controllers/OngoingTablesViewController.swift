@@ -54,28 +54,30 @@ class OngoingTablesViewController: UIViewController {
         view.addSubview(logoutButton)
         view.addSubview(noTableImageView)
         
-        noTableImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        noTableImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        noTableImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        noTableImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        noTableImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        noTableImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        noTableImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        noTableImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         
-        ongoingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        ongoingTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        ongoingTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        ongoingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        ongoingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        ongoingTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+        ongoingTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+        ongoingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         
         
-        logoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
-        logoutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 60).isActive = true
-        logoutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -60).isActive = true
-        logoutButton.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+        logoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+        logoutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 60),
+        logoutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -60),
+        logoutButton.heightAnchor.constraint(equalToConstant: 60.0)
+        ])
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //navigationController?.navigationBar.topItem?.title = "Ongoing Tables"
         //navigationItem.largeTitleDisplayMode = .automatic
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Ongoing Tables"
         setupView()
         ongoingTableView.delegate = self

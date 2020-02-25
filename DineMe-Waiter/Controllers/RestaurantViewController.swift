@@ -12,13 +12,9 @@ import FirebaseFirestore
 class RestaurantsViewController: UIViewController {
     
     let restaurantCellId = "restaurantCellId"
-    
     let inviteCellId = "invitesCellId"
-    
     var restaurants = [Restaurant]()
-    
     var invites = [Invite]()
-    
     let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
     
     lazy var restaurantTableView: UITableView = {
@@ -46,7 +42,7 @@ class RestaurantsViewController: UIViewController {
         super.viewWillAppear(true)
         
         self.navigationItem.hidesBackButton = true
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "My Restaurants"
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reload", style: .done, target: self, action: #selector(reloadPage))
@@ -58,10 +54,12 @@ class RestaurantsViewController: UIViewController {
     func setupViews() {
         view.addSubview(restaurantTableView)
         
-        restaurantTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        restaurantTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        restaurantTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        restaurantTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        restaurantTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        restaurantTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        restaurantTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        restaurantTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
         
     }
     

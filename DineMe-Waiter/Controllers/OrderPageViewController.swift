@@ -13,23 +13,14 @@ import FontAwesome_swift
 class OrderPageViewController: UIViewController {
     
     let orderCellId = "orderTableCellId"
-    
     let orderHeaderId = "orderTableHeaderId"
-    
     let orderFooterId = "orderTableFooterId"
-    
     var sections = ["Queued", "Ongoing", "Done"]
-    
     var orderListener: ListenerRegistration?
-    
     var selectedIndexPath: IndexPath = IndexPath(row: 0, section: 0)
-    
     var orderedItems = [[OrderItem](), [OrderItem](), [OrderItem]()]
-    
     var orderID: String!
-    
     var restaurantID: String!
-    
     let blur = UIBlurEffect(style: UIBlurEffect.Style.dark)
     
     lazy var blurEffectView = UIVisualEffectView(effect: blur)
@@ -127,20 +118,22 @@ class OrderPageViewController: UIViewController {
         view.addSubview(checkoutButton)
         view.addSubview(noItemsImageView)
         
-        orderTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        orderTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        orderTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        orderTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        orderTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        orderTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        orderTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        orderTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         
-        addItemButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
-        addItemButton.bottomAnchor.constraint(equalTo: checkoutButton.topAnchor, constant: -40).isActive = true
-        addItemButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        addItemButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        addItemButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+        addItemButton.bottomAnchor.constraint(equalTo: checkoutButton.topAnchor, constant: -40),
+        addItemButton.widthAnchor.constraint(equalToConstant: 150),
+        addItemButton.heightAnchor.constraint(equalToConstant: 50),
         
-        checkoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        checkoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        checkoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        checkoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        checkoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        checkoutButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
         
     }
     

@@ -89,28 +89,29 @@ class WaiterProfileViewController: UIViewController {
         view.addSubview(logOutButton)
         view.addSubview(infoView)
         
-        profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80.0).isActive = true
-        profileImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30.0).isActive = true
-        profileImageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30.0).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+        NSLayoutConstraint.activate([
+        profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80.0),
+        profileImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30.0),
+        profileImageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30.0),
+        profileImageView.heightAnchor.constraint(equalToConstant: 200.0),
         
-        logOutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30.0).isActive = true
-        logOutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0).isActive = true
-        logOutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0).isActive = true
-        logOutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        logOutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30.0),
+        logOutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20.0),
+        logOutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20.0),
+        logOutButton.heightAnchor.constraint(equalToConstant: 50),
         
-        infoView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 5.0).isActive = true
-        infoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30.0).isActive = true
-        infoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30.0).isActive = true
+        infoView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 5.0),
+        infoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30.0),
+        infoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30.0),
         
-        nameLabel.topAnchor.constraint(equalTo: itemView.topAnchor, constant: 10.0).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: itemView.leftAnchor, constant: 0.0).isActive = true
-        nameLabel.rightAnchor.constraint(equalTo: itemView.rightAnchor, constant: 0.0).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: itemView.topAnchor, constant: 10.0),
+        nameLabel.leftAnchor.constraint(equalTo: itemView.leftAnchor),
+        nameLabel.rightAnchor.constraint(equalTo: itemView.rightAnchor),
         
-        emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10.0).isActive = true
-        emailLabel.leftAnchor.constraint(equalTo: itemView.leftAnchor, constant: 0.0).isActive = true
-        emailLabel.rightAnchor.constraint(equalTo: itemView.rightAnchor, constant: 0.0).isActive = true
-        
+        emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10.0),
+        emailLabel.leftAnchor.constraint(equalTo: itemView.leftAnchor),
+        emailLabel.rightAnchor.constraint(equalTo: itemView.rightAnchor)
+        ])
     }
 }
 

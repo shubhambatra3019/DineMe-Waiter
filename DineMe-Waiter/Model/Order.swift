@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 struct Order{
     var table: String
@@ -36,7 +37,7 @@ struct Order{
     init(dict: [String: Any]) {
         self.table = dict["table"] as! String
         self.completed = dict["completed"] as! Bool
-        self.creationDateTime = dict["creationDateTime"] as! Date
+        self.creationDateTime = Date()
         self.items = []
         let itemsArr = dict["items"] as! [[String: Any]]
         for item in itemsArr {
@@ -45,7 +46,7 @@ struct Order{
         self.restaurantID = dict["restaurantID"] as! String
         self.waiterID = dict["waiterID"] as! String
         self.managerID = dict["managerID"] as! String
-        self.paidDateTime = dict["paidDateTime"] as! Date
+        self.paidDateTime = Date()
         self.orderID = dict["orderID"] as! String
         self.partySize = dict["partySize"] as! Int
     }

@@ -111,36 +111,35 @@ class AddNewTableCollectionViewController: UIViewController {
         view.addSubview(addTableButton)
         view.addSubview(closeButton)
         
-        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
-        closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        NSLayoutConstraint.activate([
+        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+        closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+        closeButton.widthAnchor.constraint(equalToConstant: 30),
+        closeButton.heightAnchor.constraint(equalToConstant: 30),
         
-        selectPartySizeHeaderView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 5).isActive = true
-        selectPartySizeHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        selectPartySizeHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        selectPartySizeHeaderView.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
+        selectPartySizeHeaderView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 5),
+        selectPartySizeHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        selectPartySizeHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        selectPartySizeHeaderView.heightAnchor.constraint(equalToConstant: 70.0),
+        selectPeopleCollectionView.topAnchor.constraint(equalTo: selectPartySizeHeaderView.bottomAnchor, constant: 10),
+        selectPeopleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        selectPeopleCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        selectPeopleCollectionView.heightAnchor.constraint(equalToConstant: 110.0),
+        selectTableHeaderView.topAnchor.constraint(equalTo: selectPeopleCollectionView.bottomAnchor, constant: 10),
+        selectTableHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        selectTableHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        selectTableHeaderView.heightAnchor.constraint(equalToConstant: 70.0),
         
-        selectPeopleCollectionView.topAnchor.constraint(equalTo: selectPartySizeHeaderView.bottomAnchor, constant: 10).isActive = true
-        selectPeopleCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        selectPeopleCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        selectPeopleCollectionView.heightAnchor.constraint(equalToConstant: 110.0).isActive = true
+        selectTableCollectionView.topAnchor.constraint(equalTo: selectTableHeaderView.bottomAnchor, constant: 10),
+        selectTableCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        selectTableCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        selectTableCollectionView.bottomAnchor.constraint(equalTo: addTableButton.topAnchor),
         
-        selectTableHeaderView.topAnchor.constraint(equalTo: selectPeopleCollectionView.bottomAnchor, constant: 10).isActive = true
-        selectTableHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        selectTableHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        selectTableHeaderView.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
-        
-        selectTableCollectionView.topAnchor.constraint(equalTo: selectTableHeaderView.bottomAnchor, constant: 10).isActive = true
-        selectTableCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        selectTableCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        selectTableCollectionView.bottomAnchor.constraint(equalTo: addTableButton.topAnchor).isActive = true
-        
-        addTableButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        addTableButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        addTableButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        addTableButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
-        
+        addTableButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        addTableButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        addTableButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        addTableButton.heightAnchor.constraint(equalToConstant: 50.0)
+        ])
     }
     
     func getTablesFromFirebase(restaurantID: String) {

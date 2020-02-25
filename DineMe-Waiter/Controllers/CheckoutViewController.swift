@@ -12,19 +12,12 @@ import FirebaseFirestore
 class CheckoutViewController: UIViewController {
 
     let cellId = "orderItemsCell"
-
     let cellId2 = "summaryCell"
-    
     var orderID: String = ""
-    
     var tableItemsListener: ListenerRegistration?
-    
     var orderItems = [OrderItem]()
-    
     let userData = User(dict: UserDefaults.standard.dictionary(forKey: "user")!)
-    
     var restaurantID: String!
-    
     var table: String = ""
     
     lazy var itemsTable: UITableView = {
@@ -98,15 +91,17 @@ class CheckoutViewController: UIViewController {
         view.addSubview(itemsTable)
         view.addSubview(checkoutButton)
         
-        itemsTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        itemsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        itemsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        itemsTable.bottomAnchor.constraint(equalTo: checkoutButton.topAnchor).isActive = true
+        NSLayoutConstraint.activate([
+        itemsTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        itemsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        itemsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        itemsTable.bottomAnchor.constraint(equalTo: checkoutButton.topAnchor),
         
-        checkoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        checkoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        checkoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        checkoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+        checkoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+        checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        checkoutButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
         
     }
     
